@@ -18,7 +18,9 @@ It suits learners from about A2 to C1. The method is the same at every level; on
 
 ## Your data
 
-Everything you log is saved in your own browser (localStorage). Nothing is sent to a server, and nobody else who opens the site can see it. To move to another device, use **Export backup** in the tracker, then **Import backup** on the other device.
+Everything you log is saved in your own browser (localStorage) and is never sent anywhere. Other visitors cannot see it; only someone using the same browser on the same device could. The page itself loads fonts from Google Fonts, and GitHub Pages keeps standard visit logs, like any website.
+
+Because the data lives in the browser, it can be lost: clearing browsing data removes it, private browsing does not keep it, and Safari may delete data for sites you have not opened in about a week. **Use Export backup in the tracker once a week.** To move to another device, export on one and use **Import backup** on the other.
 
 ## Credits
 
