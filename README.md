@@ -1,6 +1,8 @@
 # The Language Practice Journal
 
-A 120-day self-study journal for English, built around a Level System plan: three 4-week levels that move from B1 toward C1, followed by the start of the next cycle.
+A 120-day self-study journal for English, built to close the gap between understanding and speaking: three 4-week stages of daily output, followed by the start of the next cycle.
+
+It suits learners from about A2 to C1. The method is the same at every level; only the sources change, so pick ones you understand at about 90 percent. Twelve weeks will not move you a whole CEFR level; progress is measured by comparing your day 1 recording with later ones.
 
 **Live site:** https://m000n-o00o.github.io/language-practice-journal/
 
