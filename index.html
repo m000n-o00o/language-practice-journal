@@ -1,0 +1,894 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}img{max-width:100%}[hidden]{display:none!important}</style></head><body><title>Language Practice Journal</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lilita+One&family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=VT323&display=swap">
+<style>
+/* Layout: a mid-2000s cartoon-network-style web portal. Slate pinstripe backdrop, one framed manila
+   "portal" panel, chunky coloured folder tabs, black header bars, a CRT screen for today.
+   The era lives in the chrome; every block of reading text stays in a plain, highly legible face. */
+:root {
+  --bg: #3B4262;
+  --bg-stripe: #424A6C;
+  --panel: #F3E6C2;
+  --paper: #FCF7E6;
+  --ink: #261E15;
+  --muted: #6A5B45;
+  --frame: #1C1814;
+  --line: #CDBB8E;
+  --rule: #E4D6AE;
+  --bar: #17161C;
+  --bar-ink: #FFFFFF;
+  --accent: #2B78CF;
+  --accent-ink: #FFFFFF;
+  --accent-soft: #DCE8F7;
+  --hot1: #F7A21B; --hot2: #E2342B;
+  --mark: #F7D046; --mark-ink: #2A2000;
+  --crt: #0D1711; --glow: #8DFF7C; --crt-ink: #DDF5D6;
+  --tab1: #2B78CF; --tab2: #E2342B; --tab3: #17A39C; --tab4: #F29A1D; --tab5: #59B436;
+  --c-L: #17857F; --c-R: #A85A12; --c-W: #6B3FC2; --c-S: #D2321F; --c-V: #3E8A22; --c-G: #B02A63;
+  --f-display: "Lilita One", "Arial Rounded MT Bold", "Trebuchet MS", system-ui, sans-serif;
+  --f-body: "Atkinson Hyperlegible", Verdana, "Segoe UI", system-ui, sans-serif;
+  --f-mono: "VT323", ui-monospace, "Courier New", monospace;
+  --radius: 12px;
+  color-scheme: light;
+}
+
+* { box-sizing: border-box; }
+html { -webkit-text-size-adjust: 100%; background: var(--bg); }
+body {
+  background-color: var(--bg);
+  background-image: repeating-linear-gradient(135deg, transparent 0 6px, var(--bg-stripe) 6px 7px);
+  color: var(--ink); font-family: var(--f-body); font-size: 17px; line-height: 1.6;
+}
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 10; background: var(--bg); }
+.wrap { max-width: 1000px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+h1, h2, h3 { font-family: var(--f-display); font-weight: 400; line-height: 1.12; text-wrap: balance; margin: 0; letter-spacing: 0.01em; }
+p { margin: 0; }
+a { color: var(--accent); }
+button, input, textarea, select { font: inherit; color: inherit; }
+:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
+.mono { font-family: var(--f-mono); font-size: 1.15em; font-variant-numeric: tabular-nums; }
+.label { font-family: var(--f-body); font-weight: 700; font-size: 12px; letter-spacing: 0.1em; text-transform: uppercase; color: var(--muted); }
+
+/* Header */
+header.top .wrap { padding-block: 22px 14px; display: flex; gap: 14px 22px; align-items: center; flex-wrap: wrap; }
+.brand {
+  font-family: var(--f-display); font-size: clamp(30px, 6vw, 50px); line-height: 0.95; color: var(--paper);
+  text-shadow: 3px 3px 0 var(--frame), -1px -1px 0 var(--frame), 1px -1px 0 var(--frame), -1px 1px 0 var(--frame);
+}
+.brand span { color: var(--mark); }
+.badge {
+  font-family: var(--f-display); font-size: 15px; line-height: 1.05; text-align: center; color: var(--frame);
+  background: var(--mark); border: 3px solid var(--frame); border-radius: 50%; width: 86px; height: 86px;
+  display: grid; place-items: center; transform: rotate(-9deg); box-shadow: 3px 3px 0 var(--frame); flex: 0 0 auto;
+}
+.tagline { color: #E9E1C8; font-size: 15.5px; max-width: 56ch; flex: 1 1 280px; }
+
+/* Tabs: chunky coloured folder tabs */
+nav.tabs { position: sticky; top: env(safe-area-inset-top, 0px); z-index: 5; background: var(--bg); padding-top: 6px; }
+nav.tabs .wrap { display: flex; gap: 6px; overflow-x: auto; scrollbar-width: none; align-items: end; }
+nav.tabs .wrap::-webkit-scrollbar { display: none; }
+nav.tabs a {
+  flex: 0 0 auto; text-decoration: none; color: #fff; font-family: var(--f-display); font-size: 18px; letter-spacing: 0.02em;
+  padding: 9px 16px 7px; border: 3px solid var(--frame); border-bottom: 0; border-radius: 12px 12px 0 0; white-space: nowrap;
+  text-shadow: 2px 2px 0 var(--frame); background: var(--tab1); transform: translateY(5px);
+  box-shadow: inset 0 3px 0 rgb(255 255 255 / .28);
+}
+nav.tabs a:nth-child(2) { background: var(--tab2); }
+nav.tabs a:nth-child(3) { background: var(--tab3); }
+nav.tabs a:nth-child(4) { background: var(--tab4); }
+nav.tabs a:nth-child(5) { background: var(--tab5); }
+nav.tabs a[aria-current="page"] { transform: translateY(0); padding-bottom: 12px; }
+nav.tabs a:hover { filter: brightness(1.08); }
+
+/* The portal panel */
+main .wrap { padding-block: 0 28px; }
+.portal {
+  background: var(--panel); border: 3px solid var(--frame); border-radius: 0 var(--radius) var(--radius) var(--radius);
+  box-shadow: 0 7px 0 rgb(0 0 0 / .35); padding: 26px clamp(14px, 3vw, 30px) 28px;
+}
+section.view { display: grid; gap: 26px; }
+.view-head { display: grid; gap: 10px; max-width: 70ch; }
+.view-head .label {
+  justify-self: start; background: var(--bar); color: var(--bar-ink); padding: 5px 12px 4px; border-radius: 6px;
+  letter-spacing: 0.14em;
+}
+.view-head .label::after { content: " \25B6"; color: var(--mark); font-size: 10px; }
+.view-head h2 { font-size: clamp(28px, 4.6vw, 40px); color: var(--ink); }
+.view-head p { color: var(--muted); }
+
+/* Buttons */
+.btn {
+  display: inline-flex; align-items: center; gap: 8px; cursor: pointer; text-decoration: none;
+  border: 2px solid var(--frame); background: var(--paper); color: var(--ink);
+  padding: 8px 15px; border-radius: 999px; font-weight: 700; font-size: 15px; box-shadow: 0 3px 0 var(--frame);
+}
+.btn:hover { background: #fff; }
+.btn:active { transform: translateY(2px); box-shadow: 0 1px 0 var(--frame); }
+.btn:disabled { opacity: .45; cursor: default; }
+.btn.primary {
+  background: linear-gradient(var(--hot1), var(--hot2)); color: #fff; text-transform: uppercase; letter-spacing: 0.04em;
+  text-shadow: 1px 1px 0 rgb(0 0 0 / .45);
+}
+.btn.primary::after { content: "\00BB"; font-size: 18px; line-height: 1; }
+.pager { display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap; padding-top: 22px; border-top: 2px dashed var(--line); }
+.pager a {
+  text-decoration: none; display: grid; gap: 0; color: var(--ink); padding: 8px 16px; border: 2px solid var(--frame);
+  border-radius: 12px; background: var(--paper); box-shadow: 0 3px 0 var(--frame); min-width: 0;
+}
+.pager a.next { margin-left: auto; text-align: right; }
+.pager b { font-family: var(--f-display); font-weight: 400; font-size: 19px; }
+
+/* Start */
+ol.steps { padding: 0; margin: 0; display: grid; max-width: 74ch; }
+.steps li { list-style: none; display: grid; grid-template-columns: 46px 1fr; gap: 14px; padding: 15px 0; border-top: 2px dashed var(--rule); }
+.steps li:first-child { border-top: 0; }
+.steps .n { font-family: var(--f-display); font-size: 22px; color: var(--hot2); }
+.steps h3 { font-size: 21px; margin-bottom: 3px; }
+.steps p { color: var(--muted); }
+
+/* Today: a CRT set. Text inside stays plain and large. */
+.today-card {
+  position: relative; overflow: hidden; display: grid; gap: 14px; padding: 22px 24px;
+  background: radial-gradient(ellipse at 50% 40%, #1C2E21 0%, var(--crt) 75%);
+  color: var(--crt-ink); border: 12px solid #2B2A2E; border-radius: 34px / 26px;
+  box-shadow: 0 0 0 3px var(--frame), inset 0 0 40px rgb(0 0 0 / .7), 0 7px 0 rgb(0 0 0 / .35);
+}
+.today-card::after {
+  content: ""; position: absolute; inset: 0; pointer-events: none;
+  background: repeating-linear-gradient(0deg, rgb(255 255 255 / .035) 0 1px, transparent 1px 3px);
+}
+.today-card .label { color: #9FC79A; }
+.today-card a, .today-card .btn { position: relative; z-index: 1; }
+.today-row { display: flex; flex-wrap: wrap; gap: 10px 32px; align-items: baseline; }
+.big { font-family: var(--f-mono); font-size: 64px; line-height: 0.9; color: var(--glow); text-shadow: 0 0 10px rgb(141 255 124 / .55), 0 0 22px rgb(141 255 124 / .3); }
+.today-card .checkpoint-note { background: rgb(141 255 124 / .1); border: 1px solid rgb(141 255 124 / .35); color: var(--crt-ink); }
+.today-card .btn:not(.primary) { background: #24302A; color: var(--crt-ink); border-color: #000; }
+.loop { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 10px; }
+.loop div { padding: 0; display: grid; align-content: start; background: var(--paper); border: 2px solid var(--frame); border-radius: 10px; overflow: hidden; }
+.loop b { font-family: var(--f-display); font-weight: 400; font-size: 18px; background: var(--bar); color: var(--bar-ink); padding: 5px 12px 3px; }
+.loop div:nth-child(1) b { background: var(--tab2); }
+.loop div:nth-child(2) b { background: var(--tab1); }
+.loop div:nth-child(3) b { background: var(--tab3); }
+.loop div:nth-child(4) b { background: var(--tab5); }
+.loop span { color: var(--ink); font-size: 15px; padding: 10px 12px 12px; }
+@media (max-width: 720px) { .loop { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+
+/* Guide */
+.guide { display: grid; max-width: 76ch; }
+.gstep { display: grid; grid-template-columns: 58px minmax(0, 1fr); gap: 16px; padding: 20px 0; border-top: 2px dashed var(--rule); }
+.gstep:first-child { border-top: 0; }
+.gstep .num {
+  font-family: var(--f-display); font-size: 28px; color: #fff; width: 50px; height: 50px; display: grid; place-items: center;
+  background: var(--tab1); border: 3px solid var(--frame); border-radius: 50%; text-shadow: 2px 2px 0 var(--frame); box-shadow: 2px 3px 0 var(--frame);
+}
+.gstep:nth-child(4n+2) .num { background: var(--tab2); }
+.gstep:nth-child(4n+3) .num { background: var(--tab3); }
+.gstep:nth-child(4n) .num { background: var(--tab4); }
+.gstep h3 { font-size: 23px; margin-bottom: 6px; }
+.gstep .tip { margin-top: 12px; padding: 10px 14px; background: var(--paper); border: 2px dashed var(--line); border-radius: 10px; font-size: 16px; }
+.gstep .tip::before { content: "TIP "; font-family: var(--f-display); color: var(--hot2); letter-spacing: .04em; }
+.phases { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 860px) { .phases { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 480px) { .phases { grid-template-columns: minmax(0, 1fr); } }
+.phase { background: var(--paper); border: 2px solid var(--frame); border-radius: 10px; padding: 12px 14px 14px; display: grid; gap: 6px; align-content: start; box-shadow: 0 3px 0 var(--frame); }
+.phase h3 { font-size: 19px; }
+.phase p { font-size: 15px; color: var(--muted); }
+.phase .src { font-size: 13.5px; color: var(--muted); font-style: italic; line-height: 1.45; }
+.phase.now { background: #FFF6CC; outline: 3px solid var(--mark); outline-offset: 2px; }
+
+/* Ideas */
+.toolbar { display: flex; flex-wrap: wrap; gap: 8px; align-items: center; }
+.chip {
+  cursor: pointer; border: 2px solid var(--frame); background: var(--paper); border-radius: 999px; padding: 5px 12px;
+  font-weight: 700; font-size: 14px; display: inline-flex; gap: 6px; align-items: center;
+}
+.chip[aria-pressed="true"] { background: var(--accent); color: #fff; }
+.dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; flex: 0 0 auto; border: 1.5px solid var(--frame); }
+.search { flex: 1 1 220px; min-width: 0; padding: 9px 14px; border: 2px solid var(--frame); border-radius: 999px; background: #fff; box-shadow: inset 0 2px 0 rgb(0 0 0 / .08); }
+.picked { background: #FFF6CC; border: 3px solid var(--frame); border-radius: var(--radius); padding: 16px 18px; display: grid; gap: 8px; box-shadow: 0 4px 0 var(--frame); }
+.idea-list { list-style: none; margin: 0; padding: 0; display: grid; background: var(--paper); border: 2px solid var(--frame); border-radius: var(--radius); overflow: hidden; }
+.idea { display: grid; grid-template-columns: 56px minmax(0, 1fr) auto; gap: 12px; align-items: start; padding: 11px 14px; border-top: 1px dashed var(--line); }
+.idea:first-child { border-top: 0; }
+.idea .code { font-family: var(--f-mono); font-size: 19px; line-height: 1.3; }
+.idea.tried { background: #F1F8E8; }
+.idea.tried p { color: var(--muted); }
+.tick { cursor: pointer; border: 2px solid var(--frame); background: #fff; border-radius: 999px; padding: 3px 11px; font-weight: 700; font-size: 12.5px; white-space: nowrap; }
+.idea.tried .tick { background: var(--tab5); color: #fff; }
+.count { color: var(--muted); font-size: 14.5px; }
+
+/* Tracker */
+.setup { background: var(--paper); border: 2px solid var(--frame); border-radius: var(--radius); padding: 14px 16px; display: flex; flex-wrap: wrap; gap: 12px; align-items: end; }
+.setup label { display: grid; gap: 4px; }
+.setup input { padding: 7px 10px; border: 2px solid var(--frame); border-radius: 8px; background: #fff; }
+.save-state { font-family: var(--f-mono); font-size: 18px; color: var(--muted); }
+.stats { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 12px; }
+@media (max-width: 660px) { .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+.stat { background: var(--paper); border: 2px solid var(--frame); border-radius: 10px; overflow: hidden; display: grid; align-content: start; }
+.stat .label { background: var(--bar); color: var(--bar-ink); padding: 5px 10px 4px; font-size: 11px; }
+.stat b { font-family: var(--f-mono); font-weight: 400; font-size: 44px; line-height: 1; padding: 8px 12px 0; color: var(--ink); }
+.stat .note { padding: 0 12px 10px; }
+.skillbars { display: grid; gap: 8px; background: var(--paper); border: 2px solid var(--frame); border-radius: var(--radius); padding: 14px 16px; }
+.sb { display: grid; grid-template-columns: 104px minmax(0, 1fr) 40px; gap: 10px; align-items: center; font-size: 15px; font-weight: 700; }
+.sb .track { height: 14px; background: #fff; border: 2px solid var(--frame); border-radius: 999px; overflow: hidden; }
+.sb .fill { height: 100%; box-shadow: inset 0 3px 0 rgb(255 255 255 / .35); }
+.sb .mono { font-size: 22px; }
+.phase-block { display: grid; gap: 10px; }
+.phase-block h3 { font-size: 21px; display: flex; gap: 10px; align-items: baseline; flex-wrap: wrap; }
+.week-row { display: grid; grid-template-columns: 156px minmax(0, 1fr); gap: 10px; align-items: center; }
+.week-row .wk { display: grid; gap: 1px; min-width: 0; }
+.week-row .wk b { font-family: var(--f-display); font-weight: 400; font-size: 16px; }
+.week-row .wk span { font-size: 13px; color: var(--muted); line-height: 1.35; }
+.week-cells { display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px; }
+@media (max-width: 640px) { .week-row { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
+.cell {
+  cursor: pointer; aspect-ratio: 1 / 1; max-width: 100%; border: 2px dashed var(--line); background: var(--paper);
+  border-radius: 9px; padding: 4px 5px; display: grid; grid-template-rows: auto 1fr auto; text-align: left; position: relative;
+}
+.cell .d { font-family: var(--f-mono); font-size: 19px; line-height: 1; color: var(--muted); }
+.cell .bars { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2px; align-self: end; }
+.cell .bars i { height: 6px; border-radius: 3px; background: var(--rule); }
+.cell .ppl { position: absolute; bottom: 15px; right: 5px; width: 8px; height: 8px; border-radius: 50%; background: var(--accent); border: 1.5px solid var(--frame); }
+.cell.logged { border: 2px solid var(--frame); background: #fff; }
+.cell.logged .d { color: var(--ink); }
+.cell.today { box-shadow: 0 0 0 3px var(--hot1); }
+.cell.sel { background: #FFF6CC; }
+.cell.check::after { content: ""; position: absolute; top: 4px; right: 4px; width: 9px; height: 9px; border-radius: 50%; background: var(--mark); border: 1.5px solid var(--frame); }
+.cell.future { opacity: 0.6; }
+.editor { background: var(--paper); border: 3px solid var(--frame); border-radius: var(--radius); padding: 18px; display: grid; gap: 14px; scroll-margin-top: 80px; box-shadow: 0 5px 0 var(--frame); }
+.editor-head { display: flex; flex-wrap: wrap; gap: 8px 16px; align-items: baseline; justify-content: space-between; border-bottom: 2px dashed var(--line); padding-bottom: 10px; }
+.editor-head h3 { font-size: 26px; }
+.skills { display: flex; flex-wrap: wrap; gap: 8px; }
+.act-groups { display: grid; gap: 10px; }
+.act-group { display: grid; grid-template-columns: 82px minmax(0, 1fr); gap: 10px; align-items: center; }
+@media (max-width: 520px) { .act-group { grid-template-columns: minmax(0, 1fr); gap: 6px; } }
+.act { cursor: pointer; border: 2px solid var(--frame); background: #fff; border-radius: 999px; padding: 6px 12px; font-weight: 700; font-size: 14.5px; display: inline-flex; gap: 7px; align-items: center; }
+.act .bx { width: 16px; height: 16px; border: 2px solid var(--frame); border-radius: 4px; display: inline-grid; place-items: center; font-size: 12px; line-height: 1; background: #fff; }
+.act[aria-pressed="true"] { background: var(--accent-soft); }
+.act[aria-pressed="true"] .bx { background: var(--accent); color: #fff; }
+.act[aria-pressed="true"] .bx::after { content: "\2713"; }
+.fields { display: grid; grid-template-columns: 120px 140px minmax(0, 1fr); gap: 12px; }
+@media (max-width: 640px) { .fields { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } .fields .wide { grid-column: 1 / -1; } }
+.fields label, .full label { display: grid; gap: 4px; min-width: 0; }
+.fields input, .full textarea, .full select { width: 100%; padding: 8px 10px; border: 2px solid var(--frame); border-radius: 8px; background: #fff; }
+.full { display: grid; gap: 12px; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); }
+@media (max-width: 640px) { .full { grid-template-columns: minmax(0, 1fr); } }
+.full .span { grid-column: 1 / -1; }
+.full textarea { resize: vertical; min-height: 64px; line-height: 1.5; }
+.focus-line { font-size: 16px; }
+.focus-line b { font-family: var(--f-display); font-weight: 400; letter-spacing: .02em; }
+.checkpoint-note { background: #FFF6CC; border: 2px solid var(--mark); padding: 10px 14px; border-radius: 10px; font-size: 16px; }
+.errlog { list-style: none; padding: 0; margin: 0; display: grid; background: var(--paper); border: 2px solid var(--frame); border-radius: var(--radius); overflow: hidden; }
+.errlog li { display: grid; grid-template-columns: 64px minmax(0, 1fr) minmax(0, 1fr) 100px; gap: 12px; padding: 10px 14px; border-top: 1px dashed var(--line); font-size: 16px; }
+.errlog li:first-child { border-top: 0; }
+.errlog .wrong { text-decoration: line-through; text-decoration-color: var(--hot2); color: var(--muted); }
+.errlog .tg { font-weight: 700; font-size: 12.5px; color: var(--muted); text-align: right; text-transform: uppercase; letter-spacing: .06em; }
+@media (max-width: 560px) { .errlog li { grid-template-columns: 52px minmax(0, 1fr); } .errlog li .right, .errlog li .tg { grid-column: 2; text-align: left; } }
+.tagcounts { display: flex; flex-wrap: wrap; gap: 8px; }
+.tagcount { border: 2px solid var(--frame); background: var(--paper); border-radius: 999px; padding: 3px 12px; font-size: 14px; font-weight: 700; }
+.tagcount b { font-family: var(--f-mono); font-weight: 400; font-size: 18px; margin-left: 6px; }
+.empty { color: var(--muted); font-style: italic; }
+.note { font-size: 14px; color: var(--muted); }
+
+/* Resources */
+.res-group { display: grid; gap: 10px; }
+.res-group > .label { justify-self: start; background: var(--bar); color: var(--bar-ink); padding: 5px 12px 4px; border-radius: 6px; }
+.res-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(290px, 1fr)); gap: 12px; }
+.res { background: var(--paper); border: 2px solid var(--frame); border-radius: var(--radius); padding: 14px 16px; display: grid; grid-template-columns: minmax(0, 1fr) 84px; gap: 12px; align-items: start; box-shadow: 0 3px 0 var(--frame); }
+.res.nolink { grid-template-columns: minmax(0, 1fr); }
+.res h3 { font-size: 20px; }
+.res p { color: var(--muted); font-size: 15px; margin-top: 4px; }
+.res .url { font-family: var(--f-mono); font-size: 17px; word-break: break-all; display: inline-block; margin-top: 8px; }
+.qr { width: 84px; height: 84px; background: #FFFFFF; border: 2px solid var(--frame); border-radius: 6px; padding: 3px; }
+.qr svg { width: 100%; height: 100%; display: block; }
+
+/* Footer credits */
+footer.credits .wrap { padding-block: 4px 30px; color: #DCD3B8; font-size: 14px; display: grid; gap: 4px; text-align: center; }
+footer.credits b { color: var(--mark); font-weight: 700; }
+
+@media (prefers-reduced-motion: no-preference) { .cell, .chip, .btn, .tick, .act { transition: background .15s, transform .08s, box-shadow .08s; } }
+</style>
+
+<header class="top">
+  <div class="wrap">
+    <div class="brand">The Language<br><span>Practice</span> Journal</div>
+    <div class="badge">120<br>DAYS</div>
+    <p class="tagline">A 120-day English journal built on a Level System plan: three 4-week levels, then the start of the next cycle.</p>
+  </div>
+</header>
+<nav class="tabs" aria-label="Sections">
+  <div class="wrap" id="tabs"></div>
+</nav>
+
+<main>
+  <div class="wrap">
+  <div class="portal">
+
+    <section class="view" id="v-start" data-view="start">
+      <div class="view-head">
+        <span class="label">Start here</span>
+        <h2>How this journal works</h2>
+        <p id="syncNote">Your log is saved in this browser on this device. To continue on another device, use Export backup in the tracker and import it there.</p>
+      </div>
+      <div class="today-card" id="todayCard"></div>
+      <div>
+        <span class="label">Every day · about 70% output, 30% input</span>
+        <div class="loop" id="loop" style="margin-top:10px"></div>
+      </div>
+      <ol class="steps" id="howList"></ol>
+    </section>
+
+    <section class="view" id="v-guide" data-view="guide" hidden>
+      <div class="view-head">
+        <span class="label">Self-learning guide</span>
+        <h2>Close the gap between understanding and speaking</h2>
+        <p>Eight steps for learning on your own: how to split your time, which sources to stay with, how to practise with people, and how your own errors choose what you study next.</p>
+      </div>
+      <div class="guide" id="guideList"></div>
+      <div>
+        <span class="label">The 120 days</span>
+        <div class="phases" id="phaseList" style="margin-top:10px"></div>
+      </div>
+    </section>
+
+    <section class="view" id="v-ideas" data-view="ideas" hidden>
+      <div class="view-head">
+        <span class="label">Practice bank</span>
+        <h2>186 practice ideas</h2>
+        <p>31 activities in each of six areas, using the same fixed sources as your plan. Mark an idea as tried and add its code to the day's log.</p>
+      </div>
+      <div class="toolbar" id="areaChips"></div>
+      <div class="toolbar">
+        <label for="ideaSearch" style="position:absolute;left:-9999px">Search ideas</label>
+        <input id="ideaSearch" class="search" type="search" placeholder="Search ideas, e.g. HelloTalk, prepositions">
+        <button class="btn primary" id="pickBtn" type="button">Pick one for me</button>
+      </div>
+      <div class="picked" id="picked" hidden></div>
+      <p class="count" id="ideaCount"></p>
+      <ul class="idea-list" id="ideaList"></ul>
+    </section>
+
+    <section class="view" id="v-tracker" data-view="tracker" hidden>
+      <div class="view-head">
+        <span class="label">120-day tracker</span>
+        <h2>Log every day</h2>
+        <p>Tap a day to log it. The three marks on each day are the core block: sentences, voice note, error log. A blue dot means you practised with a person that day. Yellow dots are checkpoints.</p>
+      </div>
+      <div class="setup" id="setup">
+        <label for="startDate"><span class="label">Day 1 date</span><input id="startDate" type="date"></label>
+        <button class="btn primary" id="setStart" type="button">Set start date</button>
+        <span class="save-state" id="saveState"></span>
+        <span class="toolbar" id="backupBar" style="margin-left:auto">
+          <button class="btn" id="exportBtn" type="button">Export backup</button>
+          <label class="btn" for="importFile" style="cursor:pointer">Import backup</label>
+          <input id="importFile" type="file" accept="application/json,.json" style="position:absolute;left:-9999px">
+        </span>
+      </div>
+      <p class="note" id="backupMsg" hidden></p>
+      <div class="stats" id="stats"></div>
+      <div class="skillbars" id="skillbars"></div>
+      <div class="editor" id="editor"></div>
+      <div id="phaseGrids" style="display:grid;gap:26px"></div>
+      <div style="display:grid;gap:10px">
+        <span class="label">Error log</span>
+        <p class="note">Every error you record collects here with its tag. The three most frequent tags choose next week's Grammar in Use units.</p>
+        <div class="tagcounts" id="tagcounts"></div>
+        <ul class="errlog" id="errlog"></ul>
+      </div>
+    </section>
+
+    <section class="view" id="v-resources" data-view="resources" hidden>
+      <div class="view-head">
+        <span class="label">Links and QR codes</span>
+        <h2>Your sources</h2>
+        <p>The first ten are your plan's fixed sources and stay the same for all twelve weeks. The last four are free tools that support them. Scan the codes from the printed journal with your phone.</p>
+      </div>
+      <div class="res-group"><span class="label">Fixed sources</span><div class="res-grid" id="resFixed"></div></div>
+      <div class="res-group"><span class="label">Support tools</span><div class="res-grid" id="resSupport"></div></div>
+    </section>
+
+    <div class="pager" id="pager" style="margin-top:36px"></div>
+  </div>
+  </div>
+</main>
+<footer class="credits">
+  <div class="wrap">
+    <p>Idea and learning plan by <a href="https://www.linkedin.com/in/%D8%B3%D8%A7%D8%B1%D9%87-%D8%A7%D9%84%D8%BA%D8%A7%D9%85%D8%AF%D9%8A-sara-al-ghamdi/" target="_blank" rel="noopener" style="color:inherit"><b>Sara Al-Ghamdi</b></a> · Code written with Claude (AI)</p>
+    <p>Weekly agenda structure inspired by the English-learning package idea from <a href="https://salla.sa/wemstudio" target="_blank" rel="noopener" style="color:inherit">Wem Studio</a> (ideas only, no content copied)</p>
+  </div>
+</footer>
+
+<script>
+const DATA = {"how": [["Record your baseline on day 1", "Talk for 2 minutes on a familiar topic and save the recording untouched. Every checkpoint compares against it."], ["Never skip the core block", "Five written sentences, one voice note and the error log: about 30 minutes, all output. On a short day, this is the whole session."], ["Add the extended block when the day allows", "Shadowing, one listening episode or article with 3 to 5 chunks, one Grammar in Use unit, and Anki review."], ["Speak with people every week", "Practise with Claude daily, send HelloTalk voice messages weekly, and take one italki assessment at the end of each month."], ["Let the error log choose next week", "Tag every corrected sentence, and transcribe one voice note a week so speaking errors get logged too. At the end of the week, the three most frequent errors decide which Grammar in Use units come next."]], "loop": [["Core", "Level 1: 5 sentences, a 1–2 min voice note, error log. From Level 2: a paragraph and a 2–3 min voice note."], ["Extended", "Shadowing, listening or reading with 3–5 chunks, a grammar unit, Anki."], ["People", "Claude daily, HelloTalk weekly, italki at month end."], ["Log", "Tick the blocks, note chunks, tag one error."]], "activities": [["sent", "5 sentences", "Core", true], ["voice", "Voice note", "Core", true], ["errl", "Error log", "Core", true], ["shadow", "Shadowing", "Extended", true], ["trans", "Transcribed", "Extended", true], ["listen", "Listening", "Extended", false], ["read", "Reading", "Extended", false], ["gram", "Grammar unit", "Extended", false], ["anki", "Anki", "Extended", false], ["claude", "Claude chat", "People", true], ["ht", "HelloTalk", "People", true], ["italki", "italki", "People", true]], "errorTags": ["Prepositions", "Pronouns", "Syntax", "Tenses", "Articles", "Word choice", "Other"], "skillMap": {"sent": "Writing", "voice": "Speaking", "errl": "Grammar & Accuracy", "shadow": "Speaking", "trans": "Grammar & Accuracy", "listen": "Listening", "read": "Reading", "gram": "Grammar & Accuracy", "anki": "Vocabulary", "claude": "Speaking", "ht": "Speaking", "italki": "Speaking"}, "skillOrder": ["Speaking", "Writing", "Listening", "Reading", "Vocabulary", "Grammar & Accuracy"], "weekFocus": {"1": "Prepositions: in, on, at, and movement (or your #1 baseline error). Write sentences about your day and places, then the matching Grammar in Use units", "2": "Pronouns (or your #2 baseline error). Retell a short conversation, checking who he, she, they and it refer to", "3": "Sentence structure: word order, questions, negatives (or your #3 baseline error). Turn Arabic-style sentences into natural English word order", "4": "Integration. Retell one story from your week using all three, then the monthly italki assessment", "5": "Past simple, present perfect, past perfect for telling stories", "6": "Conditionals for hypothetical situations", "7": "Modals and reported speech", "8": "Integration: a 3-minute story using all of them, then the italki assessment", "9": "Range: precise verbs and collocations instead of basic words", "10": "Opinion and hedging: it seems to me that, to some extent", "11": "Register: formal and informal, spoken and written", "12": "Review, the 5-minute recording comparison, and the italki assessment"}, "nextFocus": "Set from your Week 12 assessment", "guide": [{"title": "Start from a recording, not a guess", "body": "On day 1, record a 2-minute talk on a familiar topic and keep it untouched. Your listening is already ahead of your other skills, so the recording, not a level test, is the honest measure of where your speaking is.", "tip": "Expect the gap between understanding and speaking to stay visible for a long time. Twelve weeks narrow it clearly; they do not close it. Compare recordings, not feelings."}, {"title": "Make 70 percent of your time output", "body": "Because the gap is in producing English, most of each session goes to writing and speaking, and only about 30 percent to listening and reading. Input is there to feed output: you listen and read to collect phrases you will use, not only to understand.", "tip": "If a source feels easy, keep using it as a phrase mine and raise the difficulty inside it. Comprehension alone will not move you forward."}, {"title": "Protect the core block", "body": "Five written sentences, one voice note (record, listen back, re-record once) and the error log. About 30 minutes. The core block is never skipped, even on a short day. The extended block is what you add when the day allows.", "tip": "Once a week, transcribe one voice note or paste it to Claude, and log its errors. Without this, speaking errors never reach the error log."}, {"title": "Keep the same sources and raise the level inside them", "body": "Rachel's English for shadowing; 6 Minute English, then All Ears English, then Luke's English Podcast for listening; BBC Learning English, then The Guardian for reading; English Grammar in Use for grammar; Anki for chunks. The sources stay fixed for all twelve weeks. Only the difficulty changes.", "tip": "Switching sources feels productive but resets you. Staying with the same ones lets you notice your own progress."}, {"title": "Speak with people every week", "body": "Self-talk teaches you to retrieve words; it does not teach you to understand and reply in the same moment. Practise with Claude daily through role-plays, send HelloTalk voice messages weekly, and use one italki session at the end of each month as an assessment.", "tip": "On HelloTalk, keep conversations inside the app, share no personal details, and stay with two or three regular partners so the conversations can grow."}, {"title": "Write longer as the levels rise", "body": "Level 1: five sentences a day. Level 2: one paragraph of 8 to 10 sentences with connectors such as however, as a result and in contrast. Level 3: one opinion piece of 150 to 200 words a week, redrafted after correction.", "tip": "The redraft is where most of the learning happens. Rewrite the corrected version without looking at the original."}, {"title": "Collect chunks, not single words", "body": "From each listening or reading session, take 3 to 5 chunks such as 'it turns out that' or 'to some extent'. Use each one in a sentence of your own before it goes into Anki. Cards are whole chunks or sentences you actually met, never isolated words. Cap new cards at about 5 to 10 a day so the review stays near 10 minutes.", "tip": "A chunk is yours once you have used it in speech or writing without looking. Until then it is only recognised."}, {"title": "Let the error log choose your grammar", "body": "Every corrected sentence is rewritten and tagged: prepositions, pronouns, syntax, tenses, articles, word choice or other. The extra tags matter from Level 2, when tense and range errors start to dominate. Review the log at the end of each week. The three most frequent errors decide next week's Grammar in Use units, and each unit is followed straight away by sentences that use it.", "tip": "Studying a rule without producing it rarely changes how you speak. Short explanation, then immediate use."}], "phases": [{"name": "Level 1 · Consolidating B1", "short": "Level 1", "days": [1, 28], "focus": "Fix your top three recurring errors, confirmed from the baseline transcript (by default prepositions, pronouns and sentence structure), and build the daily output habit. Five sentences and a 1–2 minute voice note every day. One HelloTalk voice message a week.", "sources": "Rachel's English short clips · 6 Minute English · BBC Learning English articles · Grammar in Use units from your error log · Anki", "areas": ["Writing", "Speaking", "Grammar & Accuracy"]}, {"name": "Level 2 · Building B2", "short": "Level 2", "days": [29, 56], "focus": "Longer output and more flexible grammar. One paragraph of 8–10 sentences a day with connectors. 2–3 minute voice notes that tell a story or give an opinion without restarting. Two HelloTalk messages a week.", "sources": "Rachel's English · All Ears English · The Guardian news · Grammar in Use · Anki", "areas": ["Writing", "Speaking", "Vocabulary"]}, {"name": "Level 3 · Bridge to C1", "short": "Level 3", "days": [57, 84], "focus": "From correct to precise and natural: opinions, range and register. One 150–200 word opinion piece a week, redrafted. One 3–5 minute talk a week without notes. italki becomes free-topic conversation.", "sources": "Rachel's English, faster clips · Luke's English Podcast · Guardian long reads and opinion · Grammar in Use for recurring errors only · Anki", "areas": ["Speaking", "Writing", "Vocabulary"]}, {"name": "Next cycle", "short": "Next cycle", "days": [85, 120], "focus": "Start the next 12-week cycle with the same sources at a higher difficulty. The focus comes from your Week 12 recording comparison and italki assessment.", "sources": "Same fixed sources, one step harder", "areas": ["Speaking", "Grammar & Accuracy", "Listening"]}], "checkpoints": {"1": "Record a 2-minute baseline talk on a familiar topic and save it untouched. On day 1 or 2, transcribe it and tag every error to confirm your top three.", "28": "italki assessment: ask the teacher to name your top three recurring errors.", "56": "italki assessment, then compare with your day 1 recording.", "84": "Re-record the 2-minute baseline topic and compare it directly with day 1, then record a 5-minute talk for stamina. Choose the next cycle's focus.", "112": "Monthly italki assessment for the new cycle. Check whether last cycle's top errors still appear.", "120": "Record a 2-minute talk on the baseline topic and write down what changed since day 1."}, "areas": {"Listening": "L", "Reading": "R", "Speaking": "S", "Writing": "W", "Vocabulary": "V", "Grammar & Accuracy": "G"}, "ideas": [{"id": "L01", "area": "Listening", "text": "Listen to one 6 Minute English episode without the transcript, then with it, and mark every phrase you missed."}, {"id": "L02", "area": "Listening", "text": "Transcribe a 60-second clip word for word, then check it against the transcript."}, {"id": "L03", "area": "Listening", "text": "Shadow 2 minutes of a podcast, speaking half a second behind the speaker and copying the rhythm."}, {"id": "L04", "area": "Listening", "text": "Listen to an All Ears English episode and write down three expressions the hosts use to react to each other."}, {"id": "L05", "area": "Listening", "text": "Watch one short video at 0.75x, then 1x, then 1.25x speed."}, {"id": "L06", "area": "Listening", "text": "In a 3-minute clip, write down only the prepositions you hear."}, {"id": "L07", "area": "Listening", "text": "Listen to one minute of speech and underline only the stressed words in the transcript."}, {"id": "L08", "area": "Listening", "text": "Listen to a Luke's English Podcast episode and summarise the main story in three sentences."}, {"id": "L09", "area": "Listening", "text": "Listen to the same episode three days in a row and note what becomes clear on day three."}, {"id": "L10", "area": "Listening", "text": "Spend 10 minutes with an accent you find hard: Scottish, Australian, Indian or Southern American."}, {"id": "L11", "area": "Listening", "text": "Watch with English subtitles for the first half, then switch them off."}, {"id": "L12", "area": "Listening", "text": "Catch five examples of linked sounds, such as 'what are you' becoming 'whaddaya'."}, {"id": "L13", "area": "Listening", "text": "Find the same topic on 6 Minute English and All Ears English and list the words that only appear in the harder one."}, {"id": "L14", "area": "Listening", "text": "Dictation: write one paragraph of a slow news story from audio only."}, {"id": "L15", "area": "Listening", "text": "Pause a video before a speaker answers a question and predict the answer out loud."}, {"id": "L16", "area": "Listening", "text": "Collect three ways speakers start an answer, such as 'Well, honestly...' or 'It depends...'."}, {"id": "L17", "area": "Listening", "text": "Listen to a podcast on a walk, then record a 30-second voice note of what you remember."}, {"id": "L18", "area": "Listening", "text": "Pick one filler word a speaker uses and count how often it appears."}, {"id": "L19", "area": "Listening", "text": "Use YouGlish to hear one word you mispronounce said in ten different videos."}, {"id": "L20", "area": "Listening", "text": "Watch an interview and write down every question the interviewer asks."}, {"id": "L21", "area": "Listening", "text": "Listen to a discussion and note the phrases people use to disagree politely."}, {"id": "L22", "area": "Listening", "text": "Listen to a data or tech podcast and list ten domain terms with how they are pronounced."}, {"id": "L23", "area": "Listening", "text": "Play an audiobook chapter at normal speed and read along with the text."}, {"id": "L24", "area": "Listening", "text": "Watch a short TV scene twice and write down two phrases you would actually use."}, {"id": "L25", "area": "Listening", "text": "Memorise a 30-second monologue through repeated listening only."}, {"id": "L26", "area": "Listening", "text": "Listen to 15 minutes of a university lecture and take notes only in English."}, {"id": "L27", "area": "Listening", "text": "Compare intonation in questions and statements across a 2-minute clip."}, {"id": "L28", "area": "Listening", "text": "Answer the 6 Minute English quiz question before the hosts reveal it."}, {"id": "L29", "area": "Listening", "text": "Watch a how-to video and write the steps from memory."}, {"id": "L30", "area": "Listening", "text": "Listen to two people talking about the same topic and compare their word choices."}, {"id": "L31", "area": "Listening", "text": "Weekly: re-listen to something from your first week and rate how much you understand now, 1 to 5."}, {"id": "R01", "area": "Reading", "text": "Read one BBC Learning English article aloud from start to finish."}, {"id": "R02", "area": "Reading", "text": "Read a short article and mine three full sentences into your vocabulary list."}, {"id": "R03", "area": "Reading", "text": "Read a Wikipedia article on a topic you already know well in Arabic and note how the ideas are phrased."}, {"id": "R04", "area": "Reading", "text": "Highlight every preposition in one paragraph and check why each one is used."}, {"id": "R05", "area": "Reading", "text": "Read 15 minutes of an easy book without a dictionary, guessing meaning from context."}, {"id": "R06", "area": "Reading", "text": "Read the README of a GitHub project you use and rewrite it in simpler English."}, {"id": "R07", "area": "Reading", "text": "Read an opinion piece and find the thesis sentence and two supporting arguments."}, {"id": "R08", "area": "Reading", "text": "Read a paragraph and replace each pronoun with the noun it refers to."}, {"id": "R09", "area": "Reading", "text": "Read one Guardian long read over a week, one section a day."}, {"id": "R10", "area": "Reading", "text": "Time yourself reading 300 words and track your words per minute each week."}, {"id": "R11", "area": "Reading", "text": "Read the same news story from two outlets and compare the vocabulary."}, {"id": "R12", "area": "Reading", "text": "Read a research abstract in your field and label its parts: problem, method, result."}, {"id": "R13", "area": "Reading", "text": "Copy one well-written paragraph out by hand."}, {"id": "R14", "area": "Reading", "text": "Read a page of library documentation and note five set phrases or phrasal verbs."}, {"id": "R15", "area": "Reading", "text": "Read an English recipe and follow it."}, {"id": "R16", "area": "Reading", "text": "Read a dialogue aloud, playing both roles."}, {"id": "R17", "area": "Reading", "text": "Find five collocations in an article and check them on Ozdic."}, {"id": "R18", "area": "Reading", "text": "Read a long article over two days and summarise each half."}, {"id": "R19", "area": "Reading", "text": "Read a chapter of a book you have already read in Arabic."}, {"id": "R20", "area": "Reading", "text": "Record yourself reading one paragraph and listen for the words you hesitated on."}, {"id": "R21", "area": "Reading", "text": "Read the Cambridge Dictionary example sentences for one word and pick the most natural one."}, {"id": "R22", "area": "Reading", "text": "Read product reviews and note how people express opinions."}, {"id": "R23", "area": "Reading", "text": "Read a short biography and retell it in five sentences."}, {"id": "R24", "area": "Reading", "text": "Scan an article in 60 seconds for names and numbers, then read it fully."}, {"id": "R25", "area": "Reading", "text": "Read a blog post about learning and pick one tip to try this week."}, {"id": "R26", "area": "Reading", "text": "Annotate a text: ? for unclear, ! for surprising, a star for useful phrases."}, {"id": "R27", "area": "Reading", "text": "Read an FAQ page and write two new questions with answers in the same style."}, {"id": "R28", "area": "Reading", "text": "Read a technical tutorial and rewrite one step in your own words."}, {"id": "R29", "area": "Reading", "text": "Read a short public-domain poem aloud to practise rhythm."}, {"id": "R30", "area": "Reading", "text": "Read something slightly above your level, where you know about 90 to 95 percent of the words."}, {"id": "R31", "area": "Reading", "text": "Weekly: list every new word you met at least twice this week."}, {"id": "S01", "area": "Speaking", "text": "Self-talk: narrate what you are doing for 5 minutes while cooking or tidying."}, {"id": "S02", "area": "Speaking", "text": "Record a 1-minute answer to 'What did you do today?' and listen back."}, {"id": "S03", "area": "Speaking", "text": "Shadow the same Rachel's English clip every day for a week."}, {"id": "S04", "area": "Speaking", "text": "Describe a photo on your phone for 60 seconds without stopping."}, {"id": "S05", "area": "Speaking", "text": "Explain a data science concept, such as overfitting, in 90 seconds as if to a friend."}, {"id": "S06", "area": "Speaking", "text": "Retell a video you watched in 2 minutes."}, {"id": "S07", "area": "Speaking", "text": "Drill three sentence starters until they are automatic: 'The way I see it...', 'What I mean is...', 'Let me put it another way...'."}, {"id": "S08", "area": "Speaking", "text": "Answer an IELTS-style cue card topic for 2 minutes."}, {"id": "S09", "area": "Speaking", "text": "Read aloud a paragraph you wrote, then say it again without looking."}, {"id": "S10", "area": "Speaking", "text": "Use one new chunk from your list in five spoken sentences."}, {"id": "S11", "area": "Speaking", "text": "Say one idea in three different ways."}, {"id": "S12", "area": "Speaking", "text": "Argue with yourself: 1 minute for a statement, 1 minute against it."}, {"id": "S13", "area": "Speaking", "text": "Describe your daily routine in the past tense, then in the future."}, {"id": "S14", "area": "Speaking", "text": "Talk through your plan for the week out loud."}, {"id": "S15", "area": "Speaking", "text": "Minimal pairs: ship/sheep, live/leave, pull/pool, then p/b and f/v."}, {"id": "S16", "area": "Speaking", "text": "Send a HelloTalk voice message to one of your regular partners."}, {"id": "S17", "area": "Speaking", "text": "Mock interview: answer 'Tell me about yourself' for a data role."}, {"id": "S18", "area": "Speaking", "text": "Explain one of your projects to an imaginary recruiter in 60 seconds."}, {"id": "S19", "area": "Speaking", "text": "Describe a process step by step, such as cleaning a dataset or making tea."}, {"id": "S20", "area": "Speaking", "text": "Talk on a fixed topic with a timer and add 15 seconds each day."}, {"id": "S21", "area": "Speaking", "text": "In your monthly italki session, talk on a topic you prepared and ask for your top three errors."}, {"id": "S22", "area": "Speaking", "text": "Role-play a situation with Claude, such as a chat with a friend or a debate, and ask for corrections afterwards."}, {"id": "S23", "area": "Speaking", "text": "Repeat after a speaker focusing only on intonation, not words."}, {"id": "S24", "area": "Speaking", "text": "4/3/2: tell the same story in 4 minutes, then 3, then 2."}, {"id": "S25", "area": "Speaking", "text": "Compare two things out loud: two phones, two cities, two courses."}, {"id": "S26", "area": "Speaking", "text": "Tell a story from your childhood."}, {"id": "S27", "area": "Speaking", "text": "Summarise an article out loud before writing anything about it."}, {"id": "S28", "area": "Speaking", "text": "Give your opinion on a news story with one reason and one example."}, {"id": "S29", "area": "Speaking", "text": "Practise small-talk openers and the replies you would give."}, {"id": "S30", "area": "Speaking", "text": "Record yourself, transcribe it, correct it, then record the corrected version."}, {"id": "S31", "area": "Speaking", "text": "Checkpoint: talk for 2 minutes on your baseline topic and compare with day 1."}, {"id": "W01", "area": "Writing", "text": "Write one sentence using a new word or chunk."}, {"id": "W02", "area": "Writing", "text": "Journal five sentences about your day."}, {"id": "W03", "area": "Writing", "text": "Write 100 words on a Write & Improve task and submit it for feedback."}, {"id": "W04", "area": "Writing", "text": "Rewrite yesterday's journal entry and fix every error you can find."}, {"id": "W05", "area": "Writing", "text": "Draft a short post about something you learned this week."}, {"id": "W06", "area": "Writing", "text": "Summarise a video in exactly 50 words."}, {"id": "W07", "area": "Writing", "text": "Write a formal email asking for information."}, {"id": "W08", "area": "Writing", "text": "Write an informal message to a friend."}, {"id": "W09", "area": "Writing", "text": "Write a paragraph with a topic sentence, two supporting points and a conclusion."}, {"id": "W10", "area": "Writing", "text": "Split one long sentence into two, then combine two short sentences into one."}, {"id": "W11", "area": "Writing", "text": "Write instructions for a task you know well."}, {"id": "W12", "area": "Writing", "text": "Write a review of a book, app or course."}, {"id": "W13", "area": "Writing", "text": "Write a story of exactly 100 words."}, {"id": "W14", "area": "Writing", "text": "Describe a chart or graph in 80 words."}, {"id": "W15", "area": "Writing", "text": "Write a dialogue between two people who disagree."}, {"id": "W16", "area": "Writing", "text": "Write a README section for one of your own projects."}, {"id": "W17", "area": "Writing", "text": "Write five sentences using prepositions you often get wrong."}, {"id": "W18", "area": "Writing", "text": "Dictogloss: listen to a short passage twice, then rebuild it in writing."}, {"id": "W19", "area": "Writing", "text": "Translate an Arabic paragraph into English, then compare with a machine translation."}, {"id": "W20", "area": "Writing", "text": "Write a 200-word opinion piece."}, {"id": "W21", "area": "Writing", "text": "Write a cover-letter paragraph for a data internship or co-op."}, {"id": "W22", "area": "Writing", "text": "Keep a 'Today I learned' entry."}, {"id": "W23", "area": "Writing", "text": "Paraphrase a paragraph without reusing any four-word sequence from the original."}, {"id": "W24", "area": "Writing", "text": "Write a complaint and a thank-you note about the same situation."}, {"id": "W25", "area": "Writing", "text": "Write a compare-and-contrast paragraph."}, {"id": "W26", "area": "Writing", "text": "Write a short case study of a problem you solved."}, {"id": "W27", "area": "Writing", "text": "Answer a question on a forum, or draft the answer you would post."}, {"id": "W28", "area": "Writing", "text": "Rewrite a paragraph in a more formal register, then a more casual one."}, {"id": "W29", "area": "Writing", "text": "Free-write for 10 minutes without stopping or editing."}, {"id": "W30", "area": "Writing", "text": "Get feedback from a tutor or Write & Improve, then rewrite the piece."}, {"id": "W31", "area": "Writing", "text": "Weekly: reread this week's writing and log the errors that repeat."}, {"id": "V01", "area": "Vocabulary", "text": "Sentence mining: save three full sentences you liked today, not single words."}, {"id": "V02", "area": "Vocabulary", "text": "For one new word, find three real sentences that use it."}, {"id": "V03", "area": "Vocabulary", "text": "Learn one collocation family: make, do, take or have with common nouns."}, {"id": "V04", "area": "Vocabulary", "text": "Learn three phrasal verbs with the same particle: set up, give up, look up."}, {"id": "V05", "area": "Vocabulary", "text": "Write the word family of one word: noun, verb, adjective, adverb."}, {"id": "V06", "area": "Vocabulary", "text": "Rank four words by intensity: good, great, excellent, outstanding."}, {"id": "V07", "area": "Vocabulary", "text": "Review your list and mark the items you can now use in speech."}, {"id": "V08", "area": "Vocabulary", "text": "Write five personal sentences with new chunks."}, {"id": "V09", "area": "Vocabulary", "text": "Review your Anki deck, and add only chunks you met yourself."}, {"id": "V10", "area": "Vocabulary", "text": "Learn five linking words for writing: however, therefore, whereas, moreover, instead."}, {"id": "V11", "area": "Vocabulary", "text": "Learn five spoken discourse markers: anyway, actually, I mean, to be fair, basically."}, {"id": "V12", "area": "Vocabulary", "text": "Collect five idioms from content you consumed and check how they are used."}, {"id": "V13", "area": "Vocabulary", "text": "Build a topic set of ten words for work, travel, health or tech."}, {"id": "V14", "area": "Vocabulary", "text": "Learn the opposites of five words you know."}, {"id": "V15", "area": "Vocabulary", "text": "Check the register of one word in Cambridge Dictionary: formal, neutral or informal."}, {"id": "V16", "area": "Vocabulary", "text": "Prefixes: un-, re-, dis-, mis-, with three examples each."}, {"id": "V17", "area": "Vocabulary", "text": "Suffixes: -tion, -ment, -ful, -less, with three examples each."}, {"id": "V18", "area": "Vocabulary", "text": "Tell a 1-minute story using five of this week's words."}, {"id": "V19", "area": "Vocabulary", "text": "List verb + preposition pairs you misuse, such as depend on or interested in."}, {"id": "V20", "area": "Vocabulary", "text": "Pick one word you only recognise and force it into use today."}, {"id": "V21", "area": "Vocabulary", "text": "Label objects in your room in English for a week."}, {"id": "V22", "area": "Vocabulary", "text": "Learn five data or tech words and check their pronunciation on YouGlish."}, {"id": "V23", "area": "Vocabulary", "text": "Draw a mind map around one keyword."}, {"id": "V24", "area": "Vocabulary", "text": "Define a word in your own English words, without a dictionary."}, {"id": "V25", "area": "Vocabulary", "text": "Note phrases you translate literally from Arabic and find the natural English."}, {"id": "V26", "area": "Vocabulary", "text": "Learn three expressions for agreeing and three for disagreeing."}, {"id": "V27", "area": "Vocabulary", "text": "Learn three ways to express cause and effect."}, {"id": "V28", "area": "Vocabulary", "text": "Learn five phrases for describing data: a sharp increase, a slight drop, remained stable."}, {"id": "V29", "area": "Vocabulary", "text": "Quiz yourself: cover the meaning and recall it from the sentence."}, {"id": "V30", "area": "Vocabulary", "text": "Remove items from your list that you will never use."}, {"id": "V31", "area": "Vocabulary", "text": "Weekly: count the chunks you used in real speech or writing."}, {"id": "G01", "area": "Grammar & Accuracy", "text": "Error log: rewrite one corrected sentence and tag it, such as prepositions, pronouns, syntax or tenses."}, {"id": "G02", "area": "Grammar & Accuracy", "text": "In, on, at for time: write six sentences about your schedule."}, {"id": "G03", "area": "Grammar & Accuracy", "text": "In, on, at for place: describe where things are in your room."}, {"id": "G04", "area": "Grammar & Accuracy", "text": "Adjective + preposition pairs: good at, afraid of, interested in. Write one sentence each."}, {"id": "G05", "area": "Grammar & Accuracy", "text": "Pronoun reference: rewrite a paragraph so every he, she, it and they is clear."}, {"id": "G06", "area": "Grammar & Accuracy", "text": "Subject and object pronouns: I/me, he/him, who/whom in ten sentences."}, {"id": "G07", "area": "Grammar & Accuracy", "text": "Its/it's, their/there/they're, your/you're in one short paragraph."}, {"id": "G08", "area": "Grammar & Accuracy", "text": "Word order with frequency adverbs: 'I always...', 'She is always...'."}, {"id": "G09", "area": "Grammar & Accuracy", "text": "Direct and indirect questions: 'Where is it?' versus 'Do you know where it is?'"}, {"id": "G10", "area": "Grammar & Accuracy", "text": "Articles: explain a/an/the/none in ten sentences from an article."}, {"id": "G11", "area": "Grammar & Accuracy", "text": "Countable and uncountable nouns: information, advice, data, equipment."}, {"id": "G12", "area": "Grammar & Accuracy", "text": "Present perfect versus past simple: write five pairs."}, {"id": "G13", "area": "Grammar & Accuracy", "text": "Conditionals 0 to 3: one personal sentence for each."}, {"id": "G14", "area": "Grammar & Accuracy", "text": "Relative clauses with who, which, that and whose."}, {"id": "G15", "area": "Grammar & Accuracy", "text": "Describe a process in the passive voice."}, {"id": "G16", "area": "Grammar & Accuracy", "text": "Report a conversation you had today in reported speech."}, {"id": "G17", "area": "Grammar & Accuracy", "text": "Modals for advice and obligation: should, must, have to, need to."}, {"id": "G18", "area": "Grammar & Accuracy", "text": "Gerund or infinitive after verbs: enjoy doing, decide to do, stop doing, stop to do."}, {"id": "G19", "area": "Grammar & Accuracy", "text": "Comparatives and superlatives in a product comparison."}, {"id": "G20", "area": "Grammar & Accuracy", "text": "Subject-verb agreement with tricky subjects: everyone, the team, the data."}, {"id": "G21", "area": "Grammar & Accuracy", "text": "Check one piece of your writing for unplanned tense shifts."}, {"id": "G22", "area": "Grammar & Accuracy", "text": "Punctuation with linkers: however; therefore, although."}, {"id": "G23", "area": "Grammar & Accuracy", "text": "Notice the gap: compare your sentence with a natural version and name the difference."}, {"id": "G24", "area": "Grammar & Accuracy", "text": "Combine sentences with although, because and while."}, {"id": "G25", "area": "Grammar & Accuracy", "text": "Check your writing for a missing 'be' verb, a common slip for Arabic speakers."}, {"id": "G26", "area": "Grammar & Accuracy", "text": "Rewrite five sentences from your error log correctly from memory."}, {"id": "G27", "area": "Grammar & Accuracy", "text": "Ask a tutor to correct only one category, such as prepositions, for a whole session."}, {"id": "G28", "area": "Grammar & Accuracy", "text": "Record one minute of speech and count errors in a single category."}, {"id": "G29", "area": "Grammar & Accuracy", "text": "Do the Grammar in Use unit that matches your top error, then write two sentences using it."}, {"id": "G30", "area": "Grammar & Accuracy", "text": "Run a text through Write & Improve and log every error type it flags."}, {"id": "G31", "area": "Grammar & Accuracy", "text": "Weekly: choose your most frequent error as next week's focus."}], "resources": [{"name": "Rachel's English", "url": "https://rachelsenglish.com", "skill": "Shadowing", "fixed": true, "what": "American pronunciation and shadowing. Short clips in Level 1, faster ones in Level 3."}, {"name": "6 Minute English", "url": "https://www.bbc.co.uk/learningenglish/english/features/6-minute-english", "skill": "Listening · Level 1", "fixed": true, "what": "Short BBC conversations with transcripts and vocabulary lists. Mine 3–5 chunks per episode."}, {"name": "All Ears English", "url": "https://www.allearsenglish.com", "skill": "Listening · Level 2", "fixed": true, "what": "Conversational podcast with natural reactions, opinions and everyday expressions."}, {"name": "Luke's English Podcast", "url": "https://teacherluke.co.uk", "skill": "Listening · Level 3", "fixed": true, "what": "Long, unscripted episodes in British English for range and stamina."}, {"name": "BBC Learning English", "url": "https://www.bbc.co.uk/learningenglish", "skill": "Reading · Level 1", "fixed": true, "what": "Learner articles with glossaries before you move to real news."}, {"name": "The Guardian", "url": "https://www.theguardian.com", "skill": "Reading · Levels 2–3", "fixed": true, "what": "News in Level 2, long reads and opinion pieces in Level 3."}, {"name": "English Grammar in Use", "url": null, "skill": "Grammar", "fixed": true, "what": "Raymond Murphy, Cambridge. Pick the units your error log points to, then write sentences straight away."}, {"name": "Anki", "url": "https://apps.ankiweb.net", "skill": "Vocabulary", "fixed": true, "what": "Spaced-repetition cards. Whole chunks you met yourself, never single words."}, {"name": "HelloTalk", "url": "https://www.hellotalk.com", "skill": "Speaking · weekly", "fixed": true, "what": "Voice messages with two or three regular partners. Keep it in the app; share no personal details."}, {"name": "italki", "url": "https://www.italki.com", "skill": "Speaking · monthly", "fixed": true, "what": "One session at the end of each month as your assessment. Paid per lesson."}, {"name": "Cambridge Dictionary", "url": "https://dictionary.cambridge.org", "skill": "Support", "fixed": false, "what": "Learner definitions, audio and real example sentences."}, {"name": "YouGlish", "url": "https://youglish.com", "skill": "Support", "fixed": false, "what": "Hear any word or phrase pronounced in real videos."}, {"name": "Ozdic", "url": "https://ozdic.com", "skill": "Support", "fixed": false, "what": "Collocation dictionary for Level 3 range work."}, {"name": "Write & Improve", "url": "https://writeandimprove.com", "skill": "Support", "fixed": false, "what": "Free Cambridge feedback on your paragraphs and opinion pieces between italki sessions."}]};
+const QR = {"https://rachelsenglish.com": "<svg width=\"108\" height=\"108\" class=\"segno\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#17203a\" d=\"M1 1.5h7m3 0h3m1 0h2m2 0h7m-25 1h1m5 0h1m2 0h1m1 0h1m1 0h4m1 0h1m5 0h1m-25 1h1m1 0h3m1 0h1m2 0h2m1 0h1m1 0h2m2 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m4 0h2m1 0h1m3 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m3 0h2m2 0h3m1 0h1m1 0h3m1 0h1m-25 1h1m5 0h1m1 0h1m4 0h1m1 0h2m1 0h1m5 0h1m-25 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-16 1h1m1 0h2m2 0h1m-16 1h1m2 0h1m1 0h2m1 0h2m1 0h1m1 0h2m1 0h2m1 0h1m-17 1h1m1 0h1m1 0h3m2 0h1m3 0h3m5 0h1m-22 1h1m1 0h3m2 0h1m2 0h2m1 0h1m1 0h2m3 0h2m-25 1h1m1 0h2m4 0h2m3 0h1m3 0h1m1 0h2m-16 1h2m3 0h1m1 0h2m3 0h3m1 0h1m1 0h2m-24 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h1m2 0h3m1 0h2m1 0h1m-25 1h1m2 0h1m1 0h3m1 0h3m1 0h1m2 0h5m1 0h1m1 0h1m-24 1h5m1 0h1m1 0h8m1 0h1m1 0h1m2 0h1m-24 1h2m1 0h1m2 0h3m2 0h2m2 0h8m-15 1h5m1 0h3m3 0h2m2 0h1m-25 1h7m3 0h1m3 0h3m1 0h1m1 0h2m1 0h2m-25 1h1m5 0h1m1 0h3m1 0h1m3 0h1m3 0h5m-25 1h1m1 0h3m1 0h1m2 0h1m2 0h2m2 0h6m1 0h1m-24 1h1m1 0h3m1 0h1m1 0h2m2 0h1m6 0h4m-23 1h1m1 0h3m1 0h1m2 0h2m4 0h1m3 0h2m1 0h1m1 0h1m-25 1h1m5 0h1m3 0h2m1 0h4m1 0h1m2 0h1m-22 1h7m1 0h3m1 0h2m1 0h2m1 0h2m3 0h2\"/></svg>", "https://www.bbc.co.uk/learningenglish/english/features/6-minute-english": "<svg width=\"156\" height=\"156\" class=\"segno\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#17203a\" d=\"M1 1.5h7m3 0h4m1 0h2m2 0h4m3 0h1m3 0h7m-37 1h1m5 0h1m1 0h2m2 0h3m5 0h1m4 0h2m1 0h1m1 0h1m5 0h1m-37 1h1m1 0h3m1 0h1m1 0h3m2 0h3m2 0h1m2 0h3m3 0h2m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m1 0h4m2 0h2m1 0h1m2 0h2m2 0h2m1 0h2m1 0h1m1 0h3m1 0h1m-37 1h1m1 0h3m1 0h1m2 0h1m3 0h3m1 0h4m1 0h2m1 0h1m4 0h1m1 0h3m1 0h1m-37 1h1m5 0h1m3 0h2m5 0h1m2 0h1m1 0h1m5 0h1m1 0h1m5 0h1m-37 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-29 1h1m4 0h1m2 0h5m5 0h2m-28 1h1m5 0h1m1 0h1m1 0h3m2 0h2m5 0h1m1 0h4m1 0h2m2 0h3m-36 1h1m2 0h3m1 0h2m1 0h2m1 0h2m1 0h3m3 0h2m2 0h2m1 0h1m1 0h2m2 0h1m-35 1h1m3 0h3m1 0h2m1 0h5m1 0h2m4 0h2m1 0h5m1 0h1m1 0h2m-37 1h1m2 0h3m1 0h1m1 0h3m2 0h1m4 0h2m2 0h1m2 0h1m1 0h2m1 0h1m4 0h1m-37 1h1m1 0h8m2 0h1m2 0h2m3 0h1m3 0h1m3 0h1m1 0h1m2 0h1m2 0h1m-35 1h2m3 0h3m2 0h1m2 0h2m2 0h3m1 0h1m1 0h1m1 0h3m1 0h1m1 0h1m-33 1h2m1 0h3m5 0h2m1 0h2m1 0h1m2 0h1m2 0h4m2 0h4m1 0h2m-37 1h1m1 0h2m4 0h3m1 0h1m2 0h1m3 0h1m6 0h3m2 0h1m1 0h3m-36 1h2m1 0h1m2 0h2m5 0h3m2 0h3m1 0h6m1 0h4m1 0h1m1 0h1m-36 1h1m2 0h2m1 0h2m3 0h2m2 0h1m4 0h3m1 0h3m3 0h1m1 0h3m-31 1h5m1 0h2m3 0h1m1 0h2m3 0h1m3 0h2m1 0h3m3 0h1m-34 1h1m1 0h1m1 0h3m1 0h6m9 0h4m1 0h1m1 0h1m2 0h1m-36 1h2m1 0h3m7 0h1m2 0h1m4 0h1m1 0h2m1 0h1m1 0h2m1 0h3m-33 1h2m1 0h1m1 0h1m1 0h1m3 0h1m1 0h1m1 0h3m2 0h2m2 0h2m1 0h1m2 0h1m1 0h2m-35 1h4m1 0h1m4 0h1m3 0h1m1 0h1m2 0h1m5 0h2m1 0h5m1 0h2m-37 1h1m1 0h4m2 0h1m2 0h2m2 0h4m1 0h1m1 0h2m2 0h2m1 0h5m1 0h2m-36 1h2m1 0h1m1 0h3m5 0h1m2 0h1m1 0h2m3 0h1m2 0h1m2 0h1m4 0h1m-36 1h2m3 0h1m1 0h1m1 0h1m2 0h1m4 0h2m1 0h2m1 0h1m1 0h3m1 0h1m1 0h1m1 0h1m-34 1h1m4 0h3m5 0h4m1 0h2m1 0h1m3 0h7m1 0h4m-37 1h1m1 0h4m1 0h1m2 0h2m2 0h1m1 0h1m1 0h2m6 0h2m1 0h1m2 0h4m-36 1h1m1 0h2m1 0h4m5 0h2m1 0h3m2 0h5m1 0h9m-29 1h5m1 0h3m1 0h4m1 0h2m1 0h1m1 0h1m3 0h1m-33 1h7m2 0h1m2 0h1m2 0h1m1 0h3m1 0h3m1 0h1m2 0h1m1 0h1m1 0h1m3 0h1m-37 1h1m5 0h1m2 0h1m1 0h1m1 0h2m1 0h1m2 0h2m2 0h2m2 0h2m3 0h1m3 0h1m-37 1h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h2m2 0h1m2 0h1m1 0h10m1 0h2m-36 1h1m1 0h3m1 0h1m2 0h1m7 0h1m2 0h5m1 0h1m3 0h1m2 0h2m1 0h1m-37 1h1m1 0h3m1 0h1m2 0h4m1 0h1m2 0h1m4 0h1m3 0h1m1 0h1m6 0h2m-37 1h1m5 0h1m3 0h4m1 0h2m9 0h1m1 0h1m1 0h1m1 0h2m2 0h1m-37 1h7m1 0h1m2 0h1m2 0h1m1 0h1m2 0h2m2 0h2m2 0h2m2 0h1m1 0h1m2 0h1\"/></svg>", "https://www.allearsenglish.com": "<svg width=\"124\" height=\"124\" class=\"segno\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#17203a\" d=\"M1 1.5h7m1 0h1m4 0h1m1 0h2m1 0h2m2 0h7m-29 1h1m5 0h1m1 0h1m2 0h2m1 0h1m1 0h1m1 0h2m2 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h2m1 0h2m2 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h3m3 0h1m1 0h1m3 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h6m1 0h2m1 0h2m2 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m2 0h1m1 0h2m2 0h2m2 0h2m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h4m1 0h2m2 0h2m1 0h1m-20 1h2m1 0h1m1 0h2m1 0h1m2 0h1m2 0h3m2 0h1m1 0h1m1 0h5m-28 1h2m1 0h2m1 0h2m1 0h1m2 0h1m1 0h1m5 0h2m2 0h1m2 0h1m-28 1h1m1 0h1m2 0h1m2 0h2m1 0h1m2 0h1m1 0h1m2 0h1m2 0h1m3 0h2m-27 1h1m4 0h1m3 0h1m1 0h2m2 0h1m1 0h1m1 0h2m4 0h1m-28 1h3m1 0h1m1 0h3m2 0h1m1 0h1m3 0h1m1 0h1m2 0h2m1 0h1m-26 1h2m1 0h1m8 0h1m3 0h1m3 0h4m4 0h1m-26 1h1m1 0h5m3 0h1m2 0h2m3 0h1m1 0h1m2 0h3m-29 1h1m1 0h1m1 0h2m1 0h2m3 0h3m1 0h3m1 0h2m1 0h1m-24 1h1m1 0h5m1 0h4m1 0h1m2 0h2m2 0h3m2 0h1m2 0h1m-28 1h1m1 0h2m2 0h2m2 0h1m1 0h5m2 0h3m2 0h1m1 0h2m-29 1h1m3 0h1m1 0h4m5 0h2m1 0h1m2 0h1m3 0h1m1 0h2m-28 1h2m1 0h1m3 0h1m1 0h1m1 0h3m1 0h3m3 0h1m1 0h1m2 0h2m-29 1h1m3 0h9m1 0h4m2 0h5m2 0h1m-20 1h1m1 0h1m2 0h2m1 0h1m3 0h1m3 0h1m2 0h2m-29 1h7m1 0h1m1 0h2m1 0h2m1 0h1m2 0h2m1 0h1m1 0h1m1 0h3m-29 1h1m5 0h1m3 0h2m3 0h4m1 0h1m3 0h1m-25 1h1m1 0h3m1 0h1m1 0h2m2 0h2m1 0h2m1 0h1m1 0h6m1 0h2m-29 1h1m1 0h3m1 0h1m2 0h3m2 0h2m4 0h2m2 0h1m-25 1h1m1 0h3m1 0h1m1 0h4m4 0h1m2 0h1m3 0h4m1 0h1m-29 1h1m5 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h1m2 0h4m3 0h1m-28 1h7m2 0h1m1 0h2m3 0h2m1 0h4m1 0h1m2 0h2\"/></svg>", "https://teacherluke.co.uk": "<svg width=\"108\" height=\"108\" class=\"segno\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#17203a\" d=\"M1 1.5h7m2 0h1m2 0h1m1 0h1m3 0h7m-25 1h1m5 0h1m1 0h2m1 0h3m2 0h1m1 0h1m5 0h1m-25 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m1 0h4m1 0h1m4 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m2 0h2m5 0h1m1 0h1m1 0h3m1 0h1m-25 1h1m5 0h1m7 0h1m3 0h1m5 0h1m-25 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-17 1h2m2 0h1m1 0h1m1 0h1m-17 1h1m5 0h1m1 0h1m1 0h1m2 0h1m3 0h2m2 0h3m-24 1h1m1 0h1m2 0h1m1 0h1m5 0h3m3 0h5m-24 1h1m1 0h3m1 0h2m3 0h5m1 0h2m2 0h1m1 0h2m-25 1h2m2 0h1m5 0h3m2 0h1m1 0h3m1 0h1m2 0h1m-23 1h2m1 0h2m1 0h2m1 0h2m2 0h1m2 0h1m5 0h1m-25 1h3m4 0h2m1 0h1m1 0h1m2 0h2m2 0h1m3 0h1m-24 1h1m1 0h2m2 0h2m1 0h1m2 0h2m1 0h2m1 0h4m1 0h2m-25 1h1m1 0h2m1 0h1m1 0h2m1 0h1m1 0h1m4 0h3m1 0h2m1 0h1m-25 1h1m1 0h1m1 0h1m1 0h2m1 0h1m2 0h9m1 0h1m-15 1h2m2 0h2m2 0h1m3 0h1m-21 1h7m4 0h1m4 0h1m1 0h1m1 0h1m3 0h1m-25 1h1m5 0h1m4 0h2m1 0h3m3 0h1m2 0h2m-25 1h1m1 0h3m1 0h1m3 0h4m1 0h6m1 0h1m-23 1h1m1 0h3m1 0h1m4 0h1m1 0h2m1 0h3m4 0h2m-25 1h1m1 0h3m1 0h1m2 0h2m2 0h4m4 0h2m1 0h1m-25 1h1m5 0h1m9 0h1m1 0h3m3 0h1m-25 1h7m1 0h1m1 0h2m4 0h1m4 0h1m2 0h1\"/></svg>", "https://www.bbc.co.uk/learningenglish": "<svg width=\"124\" height=\"124\" class=\"segno\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#17203a\" d=\"M1 1.5h7m1 0h3m1 0h2m2 0h5m1 0h7m-29 1h1m5 0h1m1 0h1m2 0h2m1 0h1m1 0h3m3 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m3 0h1m2 0h1m1 0h2m3 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h4m3 0h3m1 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m1 0h2m1 0h4m1 0h2m1 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m2 0h2m1 0h2m4 0h3m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-21 1h3m1 0h1m1 0h1m2 0h4m-21 1h1m1 0h2m1 0h3m1 0h3m1 0h1m1 0h4m3 0h1m2 0h1m1 0h2m-29 1h1m7 0h1m1 0h2m1 0h1m2 0h1m1 0h7m3 0h1m-27 1h1m3 0h2m4 0h2m3 0h1m5 0h2m1 0h2m-28 1h1m1 0h1m1 0h2m1 0h1m2 0h2m6 0h3m2 0h2m3 0h1m-29 1h1m5 0h1m1 0h2m1 0h2m1 0h1m2 0h1m2 0h1m4 0h2m-26 1h2m5 0h4m2 0h6m2 0h2m2 0h3m-29 1h2m2 0h1m1 0h1m1 0h3m1 0h2m3 0h1m1 0h1m2 0h3m1 0h3m-29 1h3m1 0h1m2 0h3m1 0h2m1 0h1m1 0h1m1 0h7m2 0h1m-26 1h2m2 0h1m1 0h2m4 0h1m3 0h4m2 0h2m1 0h1m-27 1h2m1 0h1m2 0h6m1 0h2m1 0h1m5 0h1m1 0h3m-28 1h1m2 0h2m1 0h1m2 0h1m1 0h5m1 0h1m2 0h2m1 0h1m2 0h1m-25 1h1m1 0h2m3 0h3m1 0h5m1 0h1m1 0h2m3 0h1m-26 1h4m1 0h5m2 0h6m1 0h7m-19 1h1m1 0h1m5 0h3m1 0h1m3 0h5m-29 1h7m1 0h2m4 0h1m1 0h2m1 0h2m1 0h1m1 0h2m1 0h1m-28 1h1m5 0h1m1 0h1m2 0h4m3 0h1m1 0h1m3 0h2m1 0h2m-29 1h1m1 0h3m1 0h1m8 0h1m1 0h1m2 0h5m1 0h1m-27 1h1m1 0h3m1 0h1m1 0h2m1 0h1m1 0h1m1 0h2m2 0h1m4 0h2m2 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h3m4 0h3m3 0h1m2 0h1m1 0h1m-29 1h1m5 0h1m2 0h1m1 0h3m2 0h1m1 0h1m1 0h1m1 0h2m1 0h1m1 0h1m-28 1h7m1 0h1m1 0h2m1 0h2m3 0h3m1 0h1m2 0h1m1 0h1\"/></svg>", "https://www.theguardian.com": "<svg width=\"124\" height=\"124\" class=\"segno\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#17203a\" d=\"M1 1.5h7m1 0h1m2 0h1m2 0h2m1 0h4m1 0h7m-29 1h1m5 0h1m1 0h2m3 0h3m1 0h1m2 0h1m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m5 0h1m1 0h3m3 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m6 0h2m1 0h4m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m3 0h3m2 0h2m1 0h3m1 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m2 0h1m5 0h2m1 0h1m1 0h1m1 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-20 1h1m1 0h1m2 0h2m2 0h3m-20 1h1m4 0h5m1 0h2m1 0h1m2 0h1m2 0h1m5 0h2m-29 1h2m7 0h2m2 0h1m2 0h4m3 0h2m1 0h2m-28 1h2m1 0h5m3 0h2m1 0h1m1 0h2m2 0h6m-22 1h1m2 0h2m1 0h2m1 0h1m1 0h2m1 0h3m1 0h1m1 0h2m-26 1h1m4 0h4m3 0h1m1 0h2m5 0h2m4 0h1m-28 1h6m5 0h2m1 0h2m1 0h1m1 0h2m1 0h1m1 0h2m2 0h1m-29 1h1m1 0h1m2 0h2m1 0h1m1 0h2m1 0h1m1 0h3m2 0h1m1 0h2m-23 1h1m1 0h1m4 0h1m1 0h1m1 0h8m4 0h5m-29 1h3m3 0h1m2 0h2m1 0h2m2 0h1m4 0h1m3 0h2m-27 1h4m1 0h1m3 0h3m6 0h3m1 0h3m3 0h1m-29 1h3m3 0h4m2 0h2m1 0h1m1 0h1m1 0h1m4 0h2m2 0h1m-29 1h1m1 0h2m5 0h2m2 0h1m4 0h2m1 0h2m2 0h1m1 0h2m-29 1h1m1 0h2m1 0h5m3 0h3m1 0h1m2 0h5m1 0h3m-21 1h1m1 0h1m3 0h2m2 0h3m3 0h4m-28 1h7m1 0h3m1 0h1m2 0h2m1 0h3m1 0h1m1 0h1m-25 1h1m5 0h1m9 0h1m2 0h2m3 0h2m1 0h2m-29 1h1m1 0h3m1 0h1m2 0h3m1 0h1m1 0h10m3 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m2 0h1m3 0h2m1 0h2m2 0h1m1 0h1m1 0h1m-28 1h1m1 0h3m1 0h1m2 0h1m1 0h1m2 0h1m3 0h7m2 0h1m-28 1h1m5 0h1m1 0h5m2 0h1m2 0h1m2 0h1m2 0h3m1 0h1m-29 1h7m3 0h2m2 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1\"/></svg>", "https://apps.ankiweb.net": "<svg width=\"108\" height=\"108\" class=\"segno\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#17203a\" d=\"M1 1.5h7m1 0h2m4 0h1m1 0h1m1 0h7m-25 1h1m5 0h1m1 0h6m2 0h1m1 0h1m5 0h1m-25 1h1m1 0h3m1 0h1m2 0h3m1 0h2m1 0h1m1 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m1 0h1m1 0h2m1 0h2m3 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m2 0h4m1 0h3m1 0h1m1 0h3m1 0h1m-25 1h1m5 0h1m3 0h1m1 0h3m3 0h1m5 0h1m-25 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-17 1h1m1 0h2m3 0h1m-16 1h1m1 0h2m1 0h3m1 0h1m4 0h3m1 0h1m2 0h1m1 0h2m-25 1h1m3 0h1m2 0h6m3 0h2m1 0h1m3 0h1m-23 1h3m2 0h1m2 0h1m2 0h3m2 0h1m1 0h2m-20 1h2m2 0h1m4 0h2m1 0h1m1 0h1m3 0h1m1 0h2m-23 1h1m2 0h1m1 0h5m1 0h3m3 0h2m1 0h1m1 0h3m-23 1h1m1 0h1m3 0h2m1 0h6m1 0h3m3 0h1m-24 1h1m1 0h1m1 0h3m1 0h3m2 0h1m5 0h1m1 0h2m-24 1h1m2 0h3m1 0h1m3 0h1m3 0h1m2 0h3m3 0h1m-23 1h1m2 0h5m3 0h1m2 0h9m-17 1h1m1 0h1m5 0h1m3 0h1m1 0h1m1 0h1m-25 1h7m1 0h2m2 0h3m1 0h1m1 0h1m1 0h1m1 0h3m-25 1h1m5 0h1m1 0h1m2 0h1m2 0h3m3 0h1m2 0h1m-24 1h1m1 0h3m1 0h1m3 0h1m3 0h1m1 0h6m2 0h1m-25 1h1m1 0h3m1 0h1m1 0h2m2 0h1m2 0h4m1 0h5m-25 1h1m1 0h3m1 0h1m1 0h1m2 0h1m3 0h2m1 0h1m1 0h1m1 0h2m-24 1h1m5 0h1m3 0h1m1 0h3m5 0h1m1 0h1m-23 1h7m1 0h1m1 0h1m2 0h3m1 0h1m1 0h6\"/></svg>", "https://www.hellotalk.com": "<svg width=\"108\" height=\"108\" class=\"segno\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#17203a\" d=\"M1 1.5h7m1 0h1m2 0h1m1 0h1m4 0h7m-25 1h1m5 0h1m1 0h2m1 0h1m1 0h1m2 0h1m1 0h1m5 0h1m-25 1h1m1 0h3m1 0h1m1 0h1m2 0h3m4 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m2 0h2m1 0h2m1 0h2m1 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-25 1h1m5 0h1m2 0h2m5 0h1m1 0h1m5 0h1m-25 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-14 1h3m2 0h1m-17 1h1m2 0h6m3 0h1m1 0h1m1 0h2m2 0h1m1 0h3m-23 1h1m1 0h1m2 0h4m1 0h4m1 0h1m1 0h5m-23 1h2m1 0h7m4 0h1m2 0h2m1 0h1m2 0h1m-24 1h3m4 0h3m8 0h1m1 0h4m-23 1h5m4 0h2m3 0h1m1 0h1m5 0h1m-25 1h2m3 0h1m1 0h1m1 0h1m2 0h1m1 0h4m2 0h1m2 0h1m-24 1h2m1 0h1m1 0h2m2 0h1m2 0h1m2 0h1m1 0h2m1 0h5m-25 1h1m2 0h1m3 0h1m1 0h2m1 0h1m4 0h1m1 0h1m1 0h2m1 0h1m-25 1h1m1 0h1m3 0h1m4 0h10m1 0h2m-16 1h6m2 0h1m3 0h1m1 0h2m-24 1h7m1 0h2m1 0h1m4 0h1m1 0h1m1 0h1m3 0h1m-25 1h1m5 0h1m1 0h1m4 0h4m3 0h1m2 0h2m-25 1h1m1 0h3m1 0h1m1 0h1m1 0h3m1 0h7m-21 1h1m1 0h3m1 0h1m1 0h2m1 0h1m2 0h1m1 0h1m1 0h1m4 0h2m-25 1h1m1 0h3m1 0h1m2 0h1m1 0h1m1 0h5m2 0h5m-25 1h1m5 0h1m2 0h1m4 0h1m4 0h2m1 0h3m-25 1h7m1 0h1m3 0h1m3 0h2m3 0h1m2 0h1\"/></svg>", "https://www.italki.com": "<svg width=\"108\" height=\"108\" class=\"segno\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#17203a\" d=\"M1 1.5h7m1 0h1m5 0h3m1 0h7m-25 1h1m5 0h1m2 0h3m1 0h2m1 0h1m1 0h1m5 0h1m-25 1h1m1 0h3m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m1 0h2m3 0h1m2 0h1m1 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m1 0h4m2 0h3m1 0h1m1 0h3m1 0h1m-25 1h1m5 0h1m1 0h2m2 0h1m5 0h1m5 0h1m-25 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-17 1h1m6 0h1m-16 1h1m3 0h1m1 0h4m1 0h2m2 0h1m1 0h5m2 0h1m-24 1h2m1 0h1m2 0h2m3 0h6m2 0h2m1 0h1m-24 1h1m1 0h1m3 0h1m1 0h6m1 0h1m3 0h4m-23 1h1m3 0h1m4 0h1m1 0h2m1 0h3m1 0h2m2 0h2m-23 1h3m1 0h2m2 0h1m1 0h2m4 0h2m2 0h4m-25 1h2m5 0h1m2 0h1m3 0h4m2 0h1m2 0h1m-21 1h4m1 0h3m2 0h4m2 0h4m-21 1h1m1 0h1m2 0h1m1 0h1m2 0h1m1 0h2m2 0h3m1 0h2m-24 1h2m1 0h1m2 0h1m1 0h1m1 0h2m4 0h7m-15 1h3m1 0h1m1 0h3m3 0h1m-21 1h7m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m-21 1h1m5 0h1m3 0h2m2 0h1m1 0h1m3 0h5m-25 1h1m1 0h3m1 0h1m1 0h3m1 0h3m1 0h9m-25 1h1m1 0h3m1 0h1m3 0h1m2 0h3m2 0h2m2 0h3m-25 1h1m1 0h3m1 0h1m2 0h2m4 0h1m1 0h2m2 0h1m1 0h1m-24 1h1m5 0h1m3 0h1m1 0h1m2 0h1m2 0h6m-24 1h7m1 0h1m2 0h5m6 0h3\"/></svg>", "https://dictionary.cambridge.org": "<svg width=\"124\" height=\"124\" class=\"segno\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#17203a\" d=\"M1 1.5h7m4 0h1m1 0h2m1 0h1m1 0h1m3 0h7m-29 1h1m5 0h1m2 0h2m2 0h1m2 0h4m2 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m1 0h2m1 0h2m1 0h7m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h3m3 0h1m2 0h1m3 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m5 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h1m1 0h1m8 0h1m2 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-20 1h2m1 0h1m1 0h2m1 0h2m-18 1h1m2 0h1m1 0h1m1 0h3m5 0h3m1 0h2m1 0h2m1 0h1m-26 1h3m5 0h1m3 0h1m1 0h1m2 0h1m3 0h4m1 0h2m-26 1h1m1 0h2m3 0h9m2 0h1m3 0h1m2 0h1m-28 1h4m4 0h1m1 0h1m5 0h1m2 0h2m2 0h1m2 0h2m-28 1h2m1 0h1m1 0h4m1 0h1m1 0h1m2 0h2m1 0h2m2 0h1m1 0h1m2 0h1m-29 1h2m2 0h1m3 0h7m1 0h3m3 0h1m1 0h1m1 0h3m-29 1h4m1 0h2m4 0h1m2 0h1m3 0h1m2 0h2m1 0h1m3 0h1m-22 1h1m7 0h1m1 0h1m2 0h2m1 0h1m1 0h1m1 0h1m-28 1h3m3 0h1m3 0h3m1 0h2m1 0h1m1 0h3m-22 1h2m3 0h1m5 0h1m2 0h1m2 0h2m2 0h4m3 0h1m-27 1h1m1 0h1m1 0h1m1 0h1m1 0h3m1 0h2m1 0h1m2 0h1m5 0h1m1 0h1m-27 1h1m4 0h1m1 0h1m1 0h1m5 0h2m4 0h1m1 0h1m1 0h2m-29 1h2m1 0h1m2 0h1m3 0h4m3 0h1m2 0h6m-18 1h1m1 0h1m3 0h7m3 0h1m1 0h3m-29 1h7m2 0h1m3 0h4m1 0h3m1 0h1m1 0h1m3 0h1m-29 1h1m5 0h1m5 0h1m1 0h1m2 0h4m3 0h2m2 0h1m-29 1h1m1 0h3m1 0h1m1 0h4m1 0h1m1 0h1m1 0h1m1 0h6m-25 1h1m1 0h3m1 0h1m2 0h1m2 0h6m5 0h1m1 0h2m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m1 0h2m2 0h2m1 0h4m3 0h4m-29 1h1m5 0h1m1 0h2m4 0h1m1 0h3m1 0h4m1 0h1m1 0h2m-29 1h7m3 0h1m1 0h1m1 0h1m2 0h1m2 0h1m1 0h1m1 0h2m1 0h1\"/></svg>", "https://youglish.com": "<svg width=\"108\" height=\"108\" class=\"segno\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#17203a\" d=\"M1 1.5h7m3 0h1m1 0h3m3 0h7m-25 1h1m5 0h1m4 0h1m1 0h1m4 0h1m5 0h1m-25 1h1m1 0h3m1 0h1m4 0h3m4 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h4m2 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m4 0h2m1 0h1m1 0h1m1 0h1m1 0h3m1 0h1m-25 1h1m5 0h1m1 0h2m2 0h3m3 0h1m5 0h1m-25 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-17 1h3m3 0h1m-14 1h2m3 0h1m2 0h1m2 0h1m3 0h1m1 0h2m1 0h1m-22 1h3m2 0h1m1 0h1m2 0h1m1 0h2m1 0h2m1 0h2m1 0h1m1 0h2m-24 1h1m2 0h4m3 0h1m1 0h1m1 0h1m4 0h3m1 0h1m-24 1h1m2 0h1m2 0h2m1 0h3m1 0h2m1 0h2m1 0h2m-22 1h1m3 0h1m1 0h3m3 0h4m2 0h1m5 0h1m-24 1h2m4 0h4m2 0h1m1 0h5m3 0h2m-25 1h2m1 0h1m2 0h1m1 0h3m1 0h1m2 0h1m2 0h1m2 0h2m1 0h1m-23 1h4m1 0h4m1 0h2m3 0h1m1 0h3m-22 1h5m1 0h1m2 0h6m1 0h5m2 0h1m-16 1h1m3 0h2m2 0h1m3 0h1m3 0h1m-25 1h7m3 0h5m1 0h1m1 0h1m1 0h1m3 0h1m-25 1h1m5 0h1m3 0h1m1 0h1m2 0h2m3 0h1m-21 1h1m1 0h3m1 0h1m3 0h2m1 0h1m1 0h6m3 0h1m-25 1h1m1 0h3m1 0h1m2 0h1m1 0h1m2 0h1m2 0h1m2 0h1m1 0h2m-24 1h1m1 0h3m1 0h1m1 0h1m2 0h2m1 0h1m2 0h1m1 0h3m1 0h2m-25 1h1m5 0h1m1 0h1m1 0h1m1 0h2m2 0h2m1 0h2m-21 1h7m5 0h1m3 0h1m4 0h1m2 0h1\"/></svg>", "https://ozdic.com": "<svg width=\"108\" height=\"108\" class=\"segno\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#17203a\" d=\"M1 1.5h7m1 0h2m1 0h6m1 0h7m-25 1h1m5 0h1m1 0h1m3 0h1m3 0h1m1 0h1m5 0h1m-25 1h1m1 0h3m1 0h1m2 0h1m2 0h1m2 0h2m1 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m3 0h1m3 0h3m1 0h1m1 0h3m1 0h1m-25 1h1m1 0h3m1 0h1m2 0h1m2 0h2m2 0h1m1 0h1m1 0h3m1 0h1m-25 1h1m5 0h1m2 0h3m1 0h2m1 0h1m1 0h1m5 0h1m-25 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-16 1h1m1 0h1m1 0h1m1 0h2m-16 1h1m4 0h4m4 0h1m2 0h1m5 0h2m-25 1h3m1 0h1m3 0h1m2 0h1m2 0h2m1 0h1m1 0h5m-23 1h1m3 0h5m5 0h2m2 0h3m1 0h2m-25 1h1m1 0h1m5 0h1m1 0h1m1 0h1m1 0h2m3 0h3m2 0h1m-25 1h3m1 0h1m1 0h4m3 0h4m1 0h2m4 0h1m-25 1h1m1 0h1m4 0h2m2 0h1m2 0h3m2 0h1m3 0h1m-24 1h1m4 0h3m1 0h5m1 0h1m1 0h5m1 0h2m-25 1h1m1 0h1m1 0h1m2 0h1m6 0h2m2 0h2m1 0h2m1 0h1m-25 1h1m1 0h1m2 0h3m3 0h4m1 0h5m1 0h1m-15 1h1m1 0h1m1 0h1m3 0h1m3 0h1m-21 1h7m1 0h1m3 0h1m1 0h1m1 0h1m1 0h1m1 0h1m3 0h1m-25 1h1m5 0h1m2 0h4m1 0h1m1 0h1m3 0h1m2 0h2m-25 1h1m1 0h3m1 0h1m2 0h1m1 0h2m2 0h6m1 0h1m1 0h1m-25 1h1m1 0h3m1 0h1m3 0h1m2 0h1m1 0h1m1 0h2m4 0h2m-25 1h1m1 0h3m1 0h1m6 0h1m1 0h1m5 0h2m1 0h1m-25 1h1m5 0h1m1 0h2m3 0h2m1 0h1m2 0h2m3 0h1m-25 1h7m2 0h2m1 0h1m1 0h1m1 0h1m1 0h1m2 0h1m2 0h1\"/></svg>", "https://writeandimprove.com": "<svg width=\"124\" height=\"124\" class=\"segno\"><path transform=\"scale(4)\" class=\"qrline\" stroke=\"#17203a\" d=\"M1 1.5h7m1 0h2m1 0h1m1 0h1m3 0h2m3 0h7m-29 1h1m5 0h1m3 0h1m2 0h1m2 0h1m1 0h1m1 0h1m1 0h1m5 0h1m-29 1h1m1 0h3m1 0h1m3 0h2m1 0h2m1 0h1m3 0h1m1 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m2 0h1m2 0h1m1 0h2m1 0h1m1 0h1m2 0h1m1 0h3m1 0h1m-29 1h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h3m3 0h2m1 0h1m1 0h3m1 0h1m-29 1h1m5 0h1m1 0h1m2 0h1m2 0h3m1 0h1m3 0h1m5 0h1m-29 1h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7m-18 1h2m3 0h1m1 0h2m-19 1h7m1 0h1m2 0h2m4 0h1m4 0h2m3 0h1m-29 1h2m2 0h2m1 0h1m2 0h1m2 0h4m1 0h9m1 0h1m-29 1h2m1 0h2m1 0h2m4 0h2m2 0h1m3 0h3m2 0h1m-25 1h1m1 0h2m3 0h1m2 0h3m4 0h8m1 0h1m-28 1h1m4 0h2m2 0h1m2 0h1m2 0h3m1 0h3m1 0h1m1 0h4m-29 1h2m1 0h1m3 0h1m2 0h2m2 0h2m1 0h6m1 0h2m1 0h2m-28 1h3m2 0h1m3 0h1m1 0h1m2 0h3m2 0h1m2 0h1m-22 1h1m4 0h1m1 0h4m4 0h4m3 0h2m-23 1h5m1 0h1m2 0h1m1 0h1m1 0h1m4 0h1m1 0h1m1 0h4m-29 1h2m3 0h1m2 0h2m1 0h1m1 0h1m1 0h1m2 0h7m2 0h2m-29 1h1m2 0h5m1 0h1m1 0h6m3 0h1m1 0h2m-24 1h1m1 0h1m1 0h1m3 0h2m1 0h5m3 0h1m2 0h2m1 0h1m2 0h1m-29 1h1m1 0h7m1 0h3m1 0h2m1 0h1m2 0h9m-21 1h5m3 0h1m1 0h3m3 0h2m1 0h2m-29 1h7m1 0h1m2 0h5m2 0h3m1 0h1m1 0h1m-25 1h1m5 0h1m1 0h1m3 0h1m1 0h1m1 0h1m2 0h2m3 0h2m1 0h1m-28 1h1m1 0h3m1 0h1m1 0h3m7 0h1m1 0h7m-27 1h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h1m1 0h3m2 0h3m1 0h1m-24 1h1m1 0h3m1 0h1m1 0h2m2 0h3m3 0h7m1 0h2m-28 1h1m5 0h1m1 0h1m1 0h2m4 0h1m3 0h1m1 0h1m1 0h2m1 0h1m-28 1h7m3 0h1m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2m1 0h1m1 0h1\"/></svg>"};
+
+const VIEWS = [
+  { id: "start", name: "Start" },
+  { id: "guide", name: "Guide" },
+  { id: "ideas", name: "Practice ideas" },
+  { id: "tracker", name: "Tracker" },
+  { id: "resources", name: "Resources" },
+];
+const ACTS = DATA.activities.map(([k, label, group, out]) => ({ k, label, group, out }));
+const CORE = ACTS.filter(a => a.group === "Core").map(a => a.k);
+const PEOPLE = ACTS.filter(a => a.group === "People").map(a => a.k);
+const GROUPS = ["Core", "Extended", "People"];
+const LS_KEY = "lpj-state-v2";
+const DAY_MS = 86400000;
+
+const $ = (s, r = document) => r.querySelector(s);
+const el = (tag, attrs = {}, ...kids) => {
+  const n = document.createElement(tag);
+  for (const [k, v] of Object.entries(attrs)) {
+    if (v == null || v === false) continue;
+    if (k === "class") n.className = v;
+    else if (k === "text") n.textContent = v;
+    else if (k.startsWith("on")) n.addEventListener(k.slice(2), v);
+    else n.setAttribute(k, v === true ? "" : v);
+  }
+  for (const c of kids.flat()) if (c != null) n.append(c.nodeType ? c : document.createTextNode(c));
+  return n;
+};
+
+/* ---------- state + persistence ---------- */
+let state = { startDate: null, days: {}, tried: [] };
+let docRef = null;
+let synced = false;
+
+function lsLoad() {
+  try { const raw = localStorage.getItem(LS_KEY); if (raw) return JSON.parse(raw); } catch (e) {}
+  return null;
+}
+function lsSave() {
+  try { localStorage.setItem(LS_KEY, JSON.stringify(state)); } catch (e) {}
+}
+function normalize(s) {
+  return {
+    startDate: typeof s?.startDate === "string" ? s.startDate : null,
+    days: s?.days && typeof s.days === "object" ? s.days : {},
+    tried: Array.isArray(s?.tried) ? s.tried : [],
+  };
+}
+
+let saveTimer = null, saving = false, dirty = false;
+function persist() {
+  lsSave();
+  dirty = true;
+  setSaveState("Saving…");
+  clearTimeout(saveTimer);
+  saveTimer = setTimeout(flush, 700);
+}
+async function flush() {
+  saveTimer = null;
+  if (!docRef) { dirty = false; setSaveState("Saved on this device"); return; }
+  if (saving) return;
+  saving = true;
+  while (dirty) {
+    dirty = false;
+    try { await docRef.set(JSON.parse(JSON.stringify(state))); setSaveState("Saved to your account"); }
+    catch (e) { setSaveState("Saved on this device only (sync failed)"); break; }
+  }
+  saving = false;
+}
+function setSaveState(t) { const n = $("#saveState"); if (n) n.textContent = t; }
+
+async function connect() {
+  try {
+    const c = window.claude;
+    if (!c || !c.use) { setSaveState("Saved on this device"); return; }
+    $("#backupBar").hidden = true; // the claude.ai viewer blocks file downloads; backups are for self-hosted copies
+    const [db, user] = await Promise.all([c.use("db"), c.use("user")]);
+    if (!db || !user) { setSaveState("Saved on this device"); return; }
+    const id = await user.id();
+    if (!id) { setSaveState("Saved on this device"); return; }
+    docRef = db.collection("data/users/" + id).doc("journal");
+    $("#syncNote").textContent = "Use it on any device: your log follows your account, so you can record on your phone and review on your laptop.";
+    $("#backupBar").hidden = true;
+    docRef.onSnapshot(snap => {
+      if (snap.metadata && snap.metadata.hasPendingWrites) return;
+      if (saveTimer || saving || dirty) return; // local edits in flight win
+      if (snap.exists) {
+        const incoming = normalize(snap.data());
+        synced = true;
+        if (JSON.stringify(incoming) === JSON.stringify(state)) { setSaveState("Synced with your account"); return; }
+        state = incoming;
+        lsSave();
+        setSaveState("Synced with your account");
+        renderAll();
+      } else if (!synced) {
+        // First visit on an account: carry over anything logged on this device.
+        const local = lsLoad();
+        if (local && (local.startDate || Object.keys(local.days || {}).length || (local.tried || []).length)) persist();
+        else setSaveState("Ready. Your log syncs to your account");
+      }
+      synced = true;
+    }, () => setSaveState("Saved on this device only (sync stopped)"));
+  } catch (e) { setSaveState("Saved on this device"); }
+}
+
+/* ---------- date + plan helpers ---------- */
+function todayISO() {
+  const d = new Date();
+  return new Date(d.getTime() - d.getTimezoneOffset() * 60000).toISOString().slice(0, 10);
+}
+function parseISO(s) { const [y, m, d] = s.split("-").map(Number); return Date.UTC(y, m - 1, d); }
+function dayNumber() {
+  if (!state.startDate) return null;
+  return Math.floor((parseISO(todayISO()) - parseISO(state.startDate)) / DAY_MS) + 1;
+}
+function dateFor(n) {
+  if (!state.startDate) return null;
+  const t = parseISO(state.startDate) + (n - 1) * DAY_MS;
+  return new Date(t).toLocaleDateString(undefined, { timeZone: "UTC", weekday: "short", day: "numeric", month: "short" });
+}
+function phaseFor(n) { return DATA.phases.find(p => n >= p.days[0] && n <= p.days[1]); }
+function weekOf(n) { return Math.min(17, Math.ceil(n / 7)); }
+function weekDays(w) { return w === 17 ? [113, 120] : [w * 7 - 6, w * 7]; }
+function focusFor(w) { return DATA.weekFocus[w] || DATA.nextFocus; }
+function actLabel(x, d) {
+  // Core output grows with the level, as in the plan.
+  if (x.k === "sent") return d <= 28 ? "5 sentences" : "Paragraph (8–10)";
+  if (x.k === "voice") return d <= 28 ? "Voice note 1–2 min" : "Voice note 2–3 min";
+  return x.label;
+}
+function acts(d) { return (d && d.a) || {}; }
+function coreDone(d) { const a = acts(d); return CORE.every(k => a[k]); }
+function isLogged(d) { return d && (Object.values(acts(d)).some(Boolean) || d.m || d.sent || d.err || d.chunks); }
+
+/* ---------- routing ---------- */
+let current = "start";
+function route() {
+  const h = location.hash.replace("#", "");
+  current = VIEWS.some(v => v.id === h) ? h : "start";
+  for (const v of VIEWS) $("#v-" + v.id).hidden = v.id !== current;
+  for (const a of document.querySelectorAll("#tabs a")) {
+    if (a.dataset.id === current) a.setAttribute("aria-current", "page"); else a.removeAttribute("aria-current");
+  }
+  if (current === "tracker") renderTracker();
+  if (current === "ideas") renderIdeas();
+  if (current === "start") renderStart();
+  renderPager();
+  window.scrollTo({ top: 0 });
+}
+function renderTabs() {
+  $("#tabs").replaceChildren(...VIEWS.map(v => el("a", { href: "#" + v.id, "data-id": v.id, text: v.name })));
+}
+function renderPager() {
+  const i = VIEWS.findIndex(v => v.id === current);
+  const kids = [];
+  if (i > 0) kids.push(el("a", { href: "#" + VIEWS[i - 1].id, class: "prev" }, el("span", { class: "label", text: "Previous" }), el("b", { text: VIEWS[i - 1].name })));
+  if (i < VIEWS.length - 1) kids.push(el("a", { href: "#" + VIEWS[i + 1].id, class: "next" }, el("span", { class: "label", text: "Next" }), el("b", { text: VIEWS[i + 1].name })));
+  $("#pager").replaceChildren(...kids);
+}
+
+/* ---------- start view ---------- */
+function renderStart() {
+  $("#loop").replaceChildren(...DATA.loop.map(([b, t]) => el("div", {}, el("b", { text: b }), el("span", { text: t }))));
+  $("#howList").replaceChildren(...DATA.how.map(([h, p], i) =>
+    el("li", {}, el("span", { class: "n", text: String(i + 1).padStart(2, "0") }), el("div", {}, el("h3", { text: h }), el("p", { text: p })))));
+  const n = dayNumber();
+  const card = $("#todayCard");
+  if (!n) {
+    card.replaceChildren(
+      el("span", { class: "label", text: "Not started yet" }),
+      el("p", { text: "Read the guide, then set your day 1 date in the tracker. Day 1 starts with your 2-minute baseline recording." }),
+      el("div", {}, el("a", { class: "btn primary", href: "#tracker", text: "Set my start date" })));
+    return;
+  }
+  if (n < 1) {
+    card.replaceChildren(el("span", { class: "label", text: "Coming up" }), el("p", { text: `Day 1 starts in ${1 - n} day${1 - n === 1 ? "" : "s"}. Pick your baseline topic now.` }));
+    return;
+  }
+  const dn = Math.min(n, 120);
+  const ph = phaseFor(dn), wk = weekOf(dn);
+  const rec = state.days[dn];
+  card.replaceChildren(
+    el("div", { class: "today-row" },
+      el("div", {}, el("span", { class: "label", text: n > 120 ? "Journal complete" : "Today" }), el("div", { class: "big", text: `Day ${dn}` })),
+      el("div", {}, el("span", { class: "label", text: `Week ${wk}` }), el("div", { style: "font-family:var(--f-display);font-weight:700;font-size:20px", text: ph.name }))),
+    el("p", { class: "focus-line" }, el("b", { text: "This week: " }), focusFor(wk)),
+    DATA.checkpoints[dn] ? el("p", { class: "checkpoint-note", text: "Checkpoint today: " + DATA.checkpoints[dn] }) : null,
+    el("div", { class: "toolbar" },
+      el("a", { class: "btn primary", href: "#tracker", text: isLogged(rec) ? (coreDone(rec) ? "Edit today's log" : "Finish today's core") : "Log today", onclick: () => { selected = dn; } }),
+      el("a", { class: "btn", href: "#ideas", text: "Find an idea", onclick: () => { filter = "phase"; } })));
+}
+
+/* ---------- guide view ---------- */
+function renderGuide() {
+  $("#guideList").replaceChildren(...DATA.guide.map((g, i) =>
+    el("article", { class: "gstep" }, el("div", { class: "num", text: i + 1 }),
+      el("div", {}, el("h3", { text: g.title }), el("p", { text: g.body }), el("p", { class: "tip", text: g.tip })))));
+  const n = dayNumber();
+  $("#phaseList").replaceChildren(...DATA.phases.map(p =>
+    el("div", { class: "phase" + (n && n >= p.days[0] && n <= p.days[1] ? " now" : "") },
+      el("span", { class: "label", text: `Days ${p.days[0]}–${p.days[1]} · Weeks ${weekOf(p.days[0])}–${weekOf(p.days[1])}` }),
+      el("h3", { text: p.name }), el("p", { text: p.focus }), el("p", { class: "src", text: p.sources }))));
+}
+
+/* ---------- ideas view ---------- */
+let filter = "all", query = "", pickedId = null;
+const AREA_KEYS = Object.keys(DATA.areas);
+function areaColor(area) { return `var(--c-${DATA.areas[area]})`; }
+function visibleIdeas() {
+  let list = DATA.ideas;
+  if (filter === "phase") {
+    const n = dayNumber(); const ph = phaseFor(n && n >= 1 ? Math.min(n, 120) : 1);
+    list = list.filter(i => ph.areas.includes(i.area));
+  } else if (filter !== "all") list = list.filter(i => i.area === filter);
+  if (query) { const q = query.toLowerCase(); list = list.filter(i => i.text.toLowerCase().includes(q) || i.id.toLowerCase() === q); }
+  return list;
+}
+function renderIdeas() {
+  const n = dayNumber(); const ph = phaseFor(n && n >= 1 ? Math.min(n, 120) : 1);
+  const chips = [["all", "All"], ["phase", "Fits " + ph.short], ...AREA_KEYS.map(a => [a, a])];
+  $("#areaChips").replaceChildren(...chips.map(([k, label]) =>
+    el("button", { class: "chip", type: "button", "aria-pressed": String(filter === k), onclick: () => { filter = k; renderIdeas(); } },
+      DATA.areas[k] ? el("span", { class: "dot", style: `background:${areaColor(k)}` }) : null, label)));
+  const list = visibleIdeas();
+  const tried = new Set(state.tried);
+  const triedHere = list.filter(i => tried.has(i.id)).length;
+  $("#ideaCount").textContent = `${list.length} ideas shown · ${triedHere} tried · ${state.tried.length} of 186 tried overall`;
+  $("#ideaList").replaceChildren(...list.map(i => ideaRow(i, tried.has(i.id))));
+  renderPicked();
+}
+function ideaRow(i, isTried) {
+  return el("li", { class: "idea" + (isTried ? " tried" : "") },
+    el("span", { class: "code", style: `color:${areaColor(i.area)}`, text: i.id }),
+    el("p", { text: i.text }),
+    el("button", { class: "tick", type: "button", "aria-pressed": String(isTried), onclick: () => toggleTried(i.id) }, isTried ? "Tried" : "Mark tried"));
+}
+function toggleTried(id) {
+  const s = new Set(state.tried);
+  s.has(id) ? s.delete(id) : s.add(id);
+  state.tried = [...s];
+  persist(); renderIdeas();
+}
+function renderPicked() {
+  const box = $("#picked");
+  const i = DATA.ideas.find(x => x.id === pickedId);
+  if (!i) { box.hidden = true; return; }
+  box.hidden = false;
+  box.replaceChildren(
+    el("span", { class: "label", text: `Picked · ${i.id} · ${i.area}` }),
+    el("p", { style: "font-size:19px", text: i.text }),
+    el("div", { class: "toolbar" },
+      el("button", { class: "btn", type: "button", onclick: pick, text: "Pick another" }),
+      el("a", { class: "btn primary", href: "#tracker", text: "Use it today", onclick: () => useIdeaToday(i.id) })));
+}
+function pick() {
+  const tried = new Set(state.tried);
+  let pool = visibleIdeas().filter(i => !tried.has(i.id));
+  if (!pool.length) pool = visibleIdeas();
+  if (!pool.length) return;
+  pickedId = pool[Math.floor(Math.random() * pool.length)].id;
+  renderPicked();
+}
+function useIdeaToday(id) {
+  const n = dayNumber();
+  if (n && n >= 1 && n <= 120) {
+    selected = n;
+    const d = { ...(state.days[n] || {}) };
+    d.idea = d.idea ? (d.idea.split(/[ ,]+/).includes(id) ? d.idea : d.idea + ", " + id) : id;
+    state.days[n] = d; persist();
+  }
+}
+
+/* ---------- tracker view ---------- */
+let selected = null;
+function computeStats() {
+  let core = 0, minutes = 0, outN = 0, allN = 0; const per = {};
+  DATA.skillOrder.forEach(s => per[s] = 0);
+  for (let n = 1; n <= 120; n++) {
+    const d = state.days[n]; if (!isLogged(d)) continue;
+    if (coreDone(d)) core++;
+    minutes += Number(d.m) || 0;
+    const a = acts(d);
+    ACTS.forEach(x => { if (a[x.k]) { allN++; if (x.out) outN++; } });
+    // A skill counts once per day, however many of its activities were ticked.
+    DATA.skillOrder.forEach(s => { if (ACTS.some(x => a[x.k] && DATA.skillMap[x.k] === s)) per[s]++; });
+  }
+  const today = dayNumber();
+  let streak = 0;
+  if (today && today >= 1) {
+    let n = Math.min(today, 120);
+    if (!coreDone(state.days[n])) n--; // today unfinished doesn't break the streak
+    while (n >= 1 && coreDone(state.days[n])) { streak++; n--; }
+  }
+  return { core, minutes, per, streak, outShare: allN ? Math.round(outN / allN * 100) : null };
+}
+function fmtMin(m) { const h = Math.floor(m / 60), r = m % 60; return h ? `${h}h ${r}m` : `${r}m`; }
+function renderStats() {
+  const n = dayNumber();
+  const st = computeStats();
+  $("#stats").replaceChildren(
+    statBox("Current day", n && n >= 1 ? String(Math.min(n, 120)) : "–", n && n >= 1 ? `week ${weekOf(Math.min(n, 120))} of 17` : "not started"),
+    statBox("Core streak", String(st.streak), "days in a row with the full core"),
+    statBox("Core days", String(st.core), "of 120"),
+    statBox("Output share", st.outShare == null ? "–" : st.outShare + "%", "of ticked activities · aim ~70%"));
+  const max = Math.max(1, ...Object.values(st.per));
+  $("#skillbars").replaceChildren(...DATA.skillOrder.map(s =>
+    el("div", { class: "sb" }, el("span", { text: s === "Grammar & Accuracy" ? "Grammar" : s }),
+      el("div", { class: "track" }, el("div", { class: "fill", style: `width:${(st.per[s] / max) * 100}%;background:var(--c-${DATA.areas[s]})` })),
+      el("span", { class: "mono", style: "text-align:right", text: st.per[s] }))),
+    el("p", { class: "note", text: `Days you practised each skill, counted from the activities you ticked. Total practice time: ${fmtMin(st.minutes)}.` }));
+}
+function renderTracker() {
+  const n = dayNumber();
+  $("#startDate").value = state.startDate || todayISO();
+  $("#setStart").textContent = state.startDate ? "Change start date" : "Set start date";
+  renderStats();
+  if (selected == null) selected = n && n >= 1 && n <= 120 ? n : 1;
+  renderGrid();
+  renderEditor();
+  renderErrLog();
+}
+function renderGrid() {
+  const n = dayNumber();
+  $("#phaseGrids").replaceChildren(...DATA.phases.map(p => {
+    const weeks = [];
+    for (let w = weekOf(p.days[0]); w <= weekOf(p.days[1]); w++) {
+      const [a, b] = weekDays(w); const cells = [];
+      for (let d = a; d <= b; d++) cells.push(cell(d, n));
+      weeks.push(el("div", { class: "week-row" },
+        el("div", { class: "wk" }, el("b", { text: `Week ${w}` }), el("span", { text: focusFor(w) })),
+        el("div", { class: "week-cells" }, cells)));
+    }
+    return el("div", { class: "phase-block" },
+      el("h3", {}, p.name, el("span", { class: "label", text: `Days ${p.days[0]}–${p.days[1]}` })), weeks);
+  }));
+}
+function statBox(label, value, sub) {
+  return el("div", { class: "stat" }, el("span", { class: "label", text: label }), el("b", { text: value }), el("span", { class: "note", text: sub }));
+}
+function cell(d, today) {
+  const rec = state.days[d];
+  const a = acts(rec);
+  const cls = ["cell"];
+  if (isLogged(rec)) cls.push("logged");
+  if (d === today) cls.push("today");
+  if (d === selected) cls.push("sel");
+  if (DATA.checkpoints[d]) cls.push("check");
+  if (today && d > today) cls.push("future");
+  const bars = CORE.map(k => el("i", { style: a[k] ? "background:var(--accent)" : null }));
+  const ppl = PEOPLE.some(k => a[k]);
+  return el("button", { class: cls.join(" "), type: "button", "aria-label": `Day ${d}` + (coreDone(rec) ? ", core done" : isLogged(rec) ? ", logged" : ""),
+    onclick: () => { selected = d; renderTracker(); $("#editor").scrollIntoView({ block: "nearest", behavior: "smooth" }); } },
+    el("span", { class: "d", text: d }), el("span"), el("span", { class: "bars" }, bars), ppl ? el("span", { class: "ppl" }) : null);
+}
+function renderEditor() {
+  const d = selected;
+  const rec = state.days[d] || {};
+  const a = acts(rec);
+  const ph = phaseFor(d), wk = weekOf(d);
+  const update = (patch) => { state.days[d] = { ...(state.days[d] || {}), ...patch }; persist(); };
+  const refresh = () => { renderGridOnly(); renderStats(); renderErrLog(); };
+
+  const groups = GROUPS.map(g => el("div", { class: "act-group" },
+    el("span", { class: "label", text: g }),
+    el("div", { class: "skills" }, ACTS.filter(x => x.group === g).map(x => ({ ...x, label: actLabel(x, d) })).map(x =>
+      el("button", { class: "act", type: "button", "aria-pressed": String(!!a[x.k]),
+        onclick: () => { update({ a: { ...acts(state.days[d]), [x.k]: !a[x.k] } }); renderTracker(); } },
+        el("span", { class: "bx" }), x.label,
+        el("span", { class: "dot", title: DATA.skillMap[x.k], style: `background:var(--c-${DATA.areas[DATA.skillMap[x.k]]})` }))))));
+
+  const input = (id, label, value, attrs, key, cls) => el("label", { for: id, class: cls },
+    el("span", { class: "label", text: label }),
+    el("input", { id, value: value ?? "", ...attrs, oninput: (e) => {
+      const v = key === "m" ? (e.target.value === "" ? "" : Math.max(0, Math.min(600, Number(e.target.value)))) : e.target.value;
+      update({ [key]: v }); refresh(); } }));
+  const area = (id, label, value, key, ph, cls) => el("label", { for: id, class: cls },
+    el("span", { class: "label", text: label }),
+    el("textarea", { id, placeholder: ph, oninput: (e) => { update({ [key]: e.target.value }); refresh(); } }, value ?? ""));
+  const tagSel = el("label", { for: "f-tag" }, el("span", { class: "label", text: "Error tag" }),
+    el("select", { id: "f-tag", onchange: (e) => { update({ tag: e.target.value }); refresh(); } },
+      el("option", { value: "", text: "Choose a tag" }),
+      DATA.errorTags.map(t => { const o = el("option", { value: t, text: t }); if (rec.tag === t) o.selected = true; return o; })));
+
+  $("#editor").replaceChildren(
+    el("div", { class: "editor-head" },
+      el("h3", { text: `Day ${d}` + (dateFor(d) ? ` · ${dateFor(d)}` : "") }),
+      el("span", { class: "label", text: `Week ${wk} · ${ph.short}` })),
+    el("p", { class: "focus-line" }, el("b", { text: "Week focus: " }), focusFor(wk)),
+    DATA.checkpoints[d] ? el("p", { class: "checkpoint-note", text: "Checkpoint: " + DATA.checkpoints[d] }) : null,
+    el("div", { class: "act-groups" }, groups),
+    el("div", { class: "toolbar note" }, "Dot colour = skill:", DATA.skillOrder.map(s =>
+      el("span", { style: "display:inline-flex;gap:5px;align-items:center" }, el("span", { class: "dot", style: `background:var(--c-${DATA.areas[s]})` }), s === "Grammar & Accuracy" ? "Grammar" : s))),
+    el("div", { class: "fields" },
+      input("f-min", "Minutes", rec.m, { type: "number", min: "0", max: "600", inputmode: "numeric" }, "m"),
+      input("f-idea", "Idea codes", rec.idea, { type: "text", placeholder: "e.g. S24, V01" }, "idea"),
+      input("f-src", "Source used", rec.src, { type: "text", placeholder: "e.g. 6 Minute English: episode title" }, "src", "wide")),
+    el("div", { class: "full" },
+      area("f-chunks", "Chunks I took (3–5)", rec.chunks, "chunks", "e.g. it turns out that · to some extent · take a closer look", "span"),
+      area("f-sent", "My best sentence today", rec.sent, "sent", "One sentence you produced that uses a new chunk or this week's focus.", "span"),
+      area("f-err", "Error", rec.err, "err", "e.g. I am interesting in data."),
+      area("f-fix", "Correction", rec.fix, "fix", "e.g. I am interested in data."),
+      tagSel),
+    el("div", { class: "toolbar" },
+      el("button", { class: "btn", type: "button", disabled: d <= 1 ? true : null, onclick: () => { selected = Math.max(1, d - 1); renderTracker(); } }, "Previous day"),
+      el("button", { class: "btn", type: "button", disabled: d >= 120 ? true : null, onclick: () => { selected = Math.min(120, d + 1); renderTracker(); } }, "Next day")));
+}
+function renderGridOnly() {
+  // Refresh cells without rebuilding the editor, so typing keeps focus.
+  const n = dayNumber();
+  for (const btn of document.querySelectorAll("#phaseGrids .cell")) {
+    const d = Number(btn.querySelector(".d").textContent);
+    btn.replaceWith(cell(d, n));
+  }
+}
+function renderErrLog() {
+  const items = []; const counts = {};
+  for (let d = 1; d <= 120; d++) {
+    const r = state.days[d];
+    if (r && (r.err || r.fix)) { items.push([d, r]); const t = r.tag || "Untagged"; counts[t] = (counts[t] || 0) + 1; }
+  }
+  const top = Object.entries(counts).sort((x, y) => y[1] - x[1]);
+  $("#tagcounts").replaceChildren(...top.map(([t, c], i) => el("span", { class: "tagcount", style: i < 3 ? "border-color:var(--accent)" : null }, t, el("b", { text: c }))));
+  $("#errlog").replaceChildren(...(items.length ? items.map(([d, r]) =>
+    el("li", {}, el("span", { class: "mono", text: `Day ${d}` }), el("span", { class: "wrong", text: r.err || "" }),
+      el("span", { class: "right", text: r.fix || "" }), el("span", { class: "tg", text: r.tag || "" })))
+    : [el("li", { class: "empty", style: "display:block" }, "No errors logged yet. Add one on any day and it will appear here.")]));
+}
+
+/* ---------- resources ---------- */
+function resCard(r) {
+  const body = el("div", { style: "min-width:0" }, el("span", { class: "label", text: r.skill }), el("h3", { text: r.name }), el("p", { text: r.what }),
+    r.url ? el("a", { class: "url", href: r.url, target: "_blank", rel: "noopener", text: r.url.replace(/^https:\/\/(www\.)?/, "") }) : el("span", { class: "url mono", text: "Book: keep a copy at your desk" }));
+  if (!r.url) return el("article", { class: "res nolink" }, body);
+  const qr = el("div", { class: "qr", "aria-hidden": "true" }); qr.innerHTML = QR[r.url] || "";
+  return el("article", { class: "res" }, body, qr);
+}
+function renderResources() {
+  $("#resFixed").replaceChildren(...DATA.resources.filter(r => r.fixed).map(resCard));
+  $("#resSupport").replaceChildren(...DATA.resources.filter(r => !r.fixed).map(resCard));
+}
+
+/* ---------- wiring ---------- */
+function renderAll() { renderStart(); renderGuide(); renderIdeas(); renderTracker(); }
+
+$("#ideaSearch").addEventListener("input", e => { query = e.target.value.trim(); renderIdeas(); });
+$("#pickBtn").addEventListener("click", pick);
+$("#setStart").addEventListener("click", () => {
+  const v = $("#startDate").value;
+  if (!v) return;
+  state.startDate = v; selected = null; persist(); renderAll();
+});
+window.addEventListener("hashchange", route);
+
+/* ---------- backup (for copies hosted outside claude.ai, where there is no account sync) ---------- */
+function backupMsg(text) { const m = $("#backupMsg"); m.textContent = text; m.hidden = !text; }
+$("#exportBtn").addEventListener("click", () => {
+  try {
+    const blob = new Blob([JSON.stringify(state, null, 2)], { type: "application/json" });
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = `practice-journal-backup-${todayISO()}.json`;
+    document.body.append(a); a.click(); a.remove();
+    setTimeout(() => URL.revokeObjectURL(a.href), 1000);
+    backupMsg("Backup saved. Open this page on your other device and choose Import backup.");
+  } catch (e) { backupMsg("Export failed in this browser. Try another browser."); }
+});
+$("#importFile").addEventListener("change", (e) => {
+  const f = e.target.files && e.target.files[0];
+  if (!f) return;
+  const reader = new FileReader();
+  reader.onload = () => {
+    try {
+      const data = normalize(JSON.parse(reader.result));
+      const days = Object.keys(data.days).length;
+      if (!data.startDate && !days && !data.tried.length) throw new Error("empty");
+      state = data; selected = null; persist(); renderAll();
+      backupMsg(`Backup imported: ${days} logged day${days === 1 ? "" : "s"}. It replaced what was on this device.`);
+    } catch (err) { backupMsg("That file isn't a journal backup. Choose the .json file made by Export backup."); }
+    e.target.value = "";
+  };
+  reader.readAsText(f);
+});
+
+const local = lsLoad();
+if (local) state = normalize(local);
+renderTabs(); renderAll(); renderResources(); route();
+setSaveState(state.startDate ? "Saved on this device" : "");
+connect();
+</script>
+</body></html>
