@@ -2,7 +2,7 @@
 
 A 120-day self-study journal for English, built around a Level System plan: three 4-week levels that move from B1 toward C1, followed by the start of the next cycle.
 
-**Live site:** `(https://m000n-o00o.github.io/language-practice-journal/)`
+**Live site:** https://m000n-o00o.github.io/language-practice-journal/
 
 ## What's inside
 
